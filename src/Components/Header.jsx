@@ -16,6 +16,7 @@ const Header = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     navigate(`/search?query=${encodeURIComponent(searchTerm)}`);
+    setSearchTerm('');
   };
 
   
