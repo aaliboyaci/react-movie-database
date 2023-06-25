@@ -9,7 +9,7 @@ import WatchList from './Routes/WatchList';
 import Details from "./Routes/Details";
 import ErrorPage from "./Routes/ErrorPage";
 import SearchPage from "./Routes/SearchPage";
-import './App.css'
+import './App.css';
 
 function App() {
   return (
@@ -22,8 +22,8 @@ function App() {
           <Route path="/GenresPage" element={<GenresPage />} />
           <Route path="/WatchList" element={<WatchList />} />
           <Route path="/Details/:showId" element={<Details />} />
-          <Route path="/*" element={<ErrorPage />} />
           <Route path="/Search" element={<SearchPage />} />
+          <Route path="/*" element={<ErrorPage />} />
         </Routes>
         <br></br>
         <Footer />

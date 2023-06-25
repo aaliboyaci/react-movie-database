@@ -10,4 +10,16 @@
     margin-right: 20px;
   }
   
+  li{
+    list-style: none;
+  }
   
+  #linkItem {
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+  }
+  
+  #linkItem:hover {
+    color: rgb(78, 176, 241);
+    text-decoration: none;
+  }

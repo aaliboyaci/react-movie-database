@@ -1,16 +1,36 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import "./header.css"
+import React, { useState, useEffect } from 'react';
+import { Link, Navigate } from 'react-router-dom';
+import './header.css';
+import { useNavigate } from 'react-router-dom';
 
+const Header = () => {
 
-export default function Header() {
+  const [searchTerm, setSearchTerm] = useState('');
+  const navigate = useNavigate();
+  
+
+  const handleInputChange = (e) => {
+    setSearchTerm(e.target.value);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    navigate(`/search?query=${encodeURIComponent(searchTerm)}`);
+  };
+
+  
+
   return (
-    <div >
+    <div>
       <h1>Movie Database App</h1>
-      <form>
-        <input id="searchInput" type="text" placeholder='Search for a movie, tv show or an actor'></input>
-        <button>Search</button>
+      <form onSubmit={handleSubmit}>
+        <input id="searchInput"  type="text"
+          value={searchTerm}
+          onChange={handleInputChange}
+          placeholder="Search for a movie"/>
+        <button type="submit">Search</button>
       </form>
+      
       <nav>
         <ul>
           <li>
@@ -30,4 +50,6 @@ export default function Header() {
       <hr></hr>
     </div>
   );
-}
+};
+
+export default Header;
