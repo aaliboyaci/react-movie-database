@@ -7,11 +7,15 @@ export default function HomePage() {
       <div className="card">
         <div className="header">
           <h2>Random Movies</h2>
-          <button>Random</button>
+          <button >Random</button>
         </div>
         <div className="content">
+          <img />
+          <p></p>
           <img src="" alt="Random Movie" />
           <p>Movie Title</p>
+          <img />
+          <p></p>
         </div>
       </div>
 
