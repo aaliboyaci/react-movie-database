@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
-import "../App.css";
+import "./SearchPage.css";
 
 const SearchPage = () => {
   const [movies, setMovies] = useState([]);
@@ -25,15 +25,25 @@ const SearchPage = () => {
   }, [query]);
 
   return (
-    <div>
+    <div id="search-container">
       <h2>Search Results</h2>
       {movies.length === 0 ? (
         <p>No movies found.</p>
       ) : (
-        <ul>
+        <ul className="movie-list">
           {movies.map((movie) => (
-            <li key={movie.id}>
-              <Link to={`/Details/${movie.id}`} id="linkItem">{movie.title}</Link>
+            <li key={movie.id} className="movie-item">
+              <Link to={`/Details/${movie.id}`} className="movie-link">
+                <img
+                  src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+                  alt={movie.title}
+                  className="movie-poster"
+                />
+                <div className="movie-info">
+                  <h3 className="movie-title">{movie.title}</h3>
+                  <p className="movie-year">{movie.release_date.substring(0, 4)}</p>
+                </div>
+              </Link>
             </li>
           ))}
         </ul>
