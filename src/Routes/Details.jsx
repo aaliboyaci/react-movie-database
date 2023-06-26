@@ -1,11 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import './Details.css';
+import { useSelector, useDispatch } from 'react-redux';
+import { addFavoriteMovie, removeFavoriteMovie } from '../store/actions';
 
 
 const Details = () => {
-  const [movie, setMovie] = useState(null);
   const { showId } = useParams();
+  const [movie, setMovie] = useState(null);
+
+  const dispatch = useDispatch();
+  const favoriteMovies = useSelector((state) => state.favoriteMovies);
+
 
   useEffect(() => {
     const fetchMovieDetails = async () => {
@@ -13,7 +19,6 @@ const Details = () => {
         const response = await fetch(`https://api.themoviedb.org/3/movie/${showId}?api_key=6ef10486c5df46ca61884c8b042d53bd`);
         const data = await response.json();
         console.log(data);
-
         setMovie(data);
       } catch (error) {
         console.error('Error fetching movie details:', error);
@@ -21,13 +26,23 @@ const Details = () => {
     };
 
     fetchMovieDetails();
-  }, [showId]);
+  }, [showId, dispatch]);
 
   if (!movie) {
     return <p>Loading...</p>;
   }
-  console.log(movie);
-  return (<>
+
+  const isMovieFavorite = favoriteMovies.some((favMovie) => favMovie.id === movie.id);
+
+  const handleFavoriteClick = () => {
+    if (isMovieFavorite) {
+      dispatch(removeFavoriteMovie(movie.id));
+    } else {
+      dispatch(addFavoriteMovie(movie));
+    }
+  };
+
+  return (
     <div className="movie-details">
       <div className="movie-info">
         <h2 className="movie-title">{movie.original_title}</h2>
@@ -35,7 +50,6 @@ const Details = () => {
           className="moviePoster"
           src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
           alt={movie.original_title}
-          
         />
         <p className="genres">
           <span className="genres-label"><b>Genre(s):</b></span>
@@ -49,10 +63,11 @@ const Details = () => {
           <p>{movie.overview}</p>
         </div>
         <p className="budget"><b>Budget: </b>$ {movie.budget}</p>
+        <button onClick={handleFavoriteClick}>
+          {isMovieFavorite ? 'Remove from Favorites' : 'Add to Favorites'}
+        </button>
       </div>
     </div>
-  </>
-  
   );
 };
 

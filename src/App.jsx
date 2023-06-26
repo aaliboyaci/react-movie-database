@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Provider } from 'react-redux';
 import Header from './Components/Header';
 import Footer from './Components/Footer';
 import HomePage from './Routes/HomePage';
@@ -10,11 +11,13 @@ import Details from "./Routes/Details";
 import ErrorPage from "./Routes/ErrorPage";
 import SearchPage from "./Routes/SearchPage";
 import './App.css';
+import store from './store';
 
 function App() {
 
   return (
     <div id="container">
+      <Provider store={store}>
       <Router
       basename={import.meta.env.DEV ? '/' : '/react-movie-database/'}>
         <Header />
@@ -30,6 +33,7 @@ function App() {
         <br></br>
         <Footer />
       </Router>
+      </Provider>
     </div>
   );
 }
