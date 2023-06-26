@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import './Details.css';
 
+
 const Details = () => {
   const [movie, setMovie] = useState(null);
   const { showId } = useParams();
@@ -31,9 +32,10 @@ const Details = () => {
       <div className="movie-info">
         <h2 className="movie-title">{movie.original_title}</h2>
         <img
-          className="movie-poster"
+          className="moviePoster"
           src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
           alt={movie.original_title}
+          
         />
         <p className="genres">
           <span className="genres-label"><b>Genre(s):</b></span>

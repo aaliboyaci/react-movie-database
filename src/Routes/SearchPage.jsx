@@ -38,6 +38,9 @@ const SearchPage = () => {
                   src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
                   alt={movie.title}
                   className="movie-poster"
+                  onError={(e) => {
+                    e.target.src = 'src/assets/404-error.png';
+                  }}
                 />
                 <div className="movie-info">
                   <h3 className="movie-title">{movie.title}</h3>
