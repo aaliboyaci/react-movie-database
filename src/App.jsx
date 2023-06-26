@@ -12,9 +12,11 @@ import SearchPage from "./Routes/SearchPage";
 import './App.css';
 
 function App() {
+
   return (
     <div id="container">
-      <Router>
+      <Router
+      basename={import.meta.env.DEV ? '/' : '/react-movie-database/'}>
         <Header />
         <Routes>
           <Route path="/" element={<HomePage />} />
