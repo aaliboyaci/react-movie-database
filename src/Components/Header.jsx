@@ -29,7 +29,7 @@ const Header = () => {
           value={searchTerm}
           onChange={handleInputChange}
           placeholder="Search for a movie"/>
-        <button type="submit">Search</button>
+        <button className="searchbtn" type="submit">Search</button>
       </form>
       
       <nav>

@@ -31,9 +31,15 @@ ul {
     height: 150px;
     object-fit: cover;
     transition: transform 0.2s;
+    border-radius: 10px 10px 0 0 ;
    
   }
-  
+  .fav-link{
+    display: block;
+  text-decoration: none;
+  color: inherit;
+  }
+
   .fav-image img:hover {
     transform: scale(1.08);
    
@@ -51,6 +57,16 @@ ul {
     width: 290px;
   }
 
+  .empty-button{
+    background-color: rgb(125, 30, 30);
+    color:white;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 8px;
+  }
+  .empty-button:hover{
+    background-color: red;
+  }
   @keyframes myAnim {
 	0% {
 		opacity: 0;
