@@ -1,4 +1,5 @@
 import React from 'react';
+import { useState } from 'react';
 import './watchList.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { removeFavoriteMovie } from '../store/actions';
@@ -7,6 +8,13 @@ import { Link } from 'react-router-dom';
 export default function WatchList() {
   const favoriteMovies = useSelector((state) => state.favoriteMovies);
   const dispatch = useDispatch();
+
+  const [page, setPage] = useState(1);
+  const moviesPerPage = 5;
+  const indexOfLastMovie = page * moviesPerPage;
+  const indexOfFirstMovie = indexOfLastMovie - moviesPerPage;
+  const currentMovies = favoriteMovies.slice(indexOfFirstMovie, indexOfLastMovie);
+
 
   const handleRemoveClick = (movieId) => {
     dispatch(removeFavoriteMovie(movieId));
@@ -20,7 +28,7 @@ export default function WatchList() {
         <p>No movies in your watch list.</p>
       ) : (
         <ul>
-          {favoriteMovies.map((movie) => (
+          {currentMovies.map((movie) => (
 
 
             <li key={movie.id} className="fav-movie">
@@ -46,6 +54,25 @@ export default function WatchList() {
           ))}
         </ul>
       )}
+
+      {favoriteMovies.length > moviesPerPage && (
+        <div className="pagination-buttons">
+          <button
+            disabled={page === 1}
+            onClick={() => setPage(page - 1)}
+          >
+            Previous
+          </button>
+
+          <button
+            disabled={currentMovies.length < moviesPerPage}
+            onClick={() => setPage(page + 1)}
+          >
+            Next
+          </button>
+        </div>
+      )}
+
 
     </div>
 
