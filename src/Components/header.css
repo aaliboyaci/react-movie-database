@@ -31,6 +31,8 @@ nav {
 
   h1{
     text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
   }
 
   form {

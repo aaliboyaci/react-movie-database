@@ -53,6 +53,11 @@
   .overview p {
     margin: 0;
   }
+
+  .movie-text{
+    width: 500px;
+    font-size: 13px;
+  }
   
   .budget {
     margin-bottom: 10px;

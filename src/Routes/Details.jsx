@@ -60,7 +60,7 @@ const Details = () => {
         <p className="release-date"><b>Release Date:</b> {movie.release_date}</p>
         <div className="overview">
           <b>Overview:</b>
-          <p>{movie.overview}</p>
+          <div className="movie-text">{movie.overview}</div>
         </div>
         <p className="budget"><b>Budget: </b>$ {movie.budget}</p>
         <button onClick={handleFavoriteClick}>
