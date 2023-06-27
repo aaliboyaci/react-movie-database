@@ -2,13 +2,21 @@
     display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 10px;
+  cursor: pointer;
 }
 
 .genre-box{
-    border-radius: 10px;
+  user-select: none;
+    border-radius: 8px;
     border: none;
     padding: 9px;
     background-color: aliceblue;
     color: rgb(36, 43, 86);
     text-align: center;
+}
+
+.genres-container :hover {
+
+  color: aliceblue;
+  background-color: rgb(36, 43, 86);
 }

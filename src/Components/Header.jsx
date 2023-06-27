@@ -7,7 +7,7 @@ const Header = () => {
 
   const [searchTerm, setSearchTerm] = useState('');
   const navigate = useNavigate();
-  
+
 
   const handleInputChange = (e) => {
     setSearchTerm(e.target.value);
@@ -19,29 +19,30 @@ const Header = () => {
     setSearchTerm('');
   };
 
-  
+
 
   return (
     <div>
       <h1><b>Movie Database App</b></h1>
       <form onSubmit={handleSubmit}>
-        <input id="searchInput"  type="text"
+        <input id="searchInput" type="text"
           value={searchTerm}
           onChange={handleInputChange}
-          placeholder="Search for a movie"/>
+          placeholder="Search for a movie" />
         <button className="searchbtn" type="submit">Search</button>
       </form>
-      
+
       <nav>
         <ul>
           <li>
             <Link to="/">Home</Link>
           </li>
           <li>
-            <Link to="/Imdb100">imdbTop100</Link>
+            <Link to="/GenresPage">Genres</Link>
+
           </li>
           <li>
-            <Link to="/GenresPage">Genres</Link>
+            <Link to="/Imdb100">imdbTop100</Link>
           </li>
           <li>
             <Link to="/WatchList">Watch List</Link>
