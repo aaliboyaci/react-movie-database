@@ -7,9 +7,11 @@ const SearchPage = () => {
   const location = useLocation();
   const genreId = new URLSearchParams(location.search).get('genreid');
   const query = new URLSearchParams(location.search).get('query');
+  const [page, setPage] = useState(1);
   const apiKey = `6ef10486c5df46ca61884c8b042d53bd`;
-  const searchUrl = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${query}`;
-  const genreUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&with_genres=${genreId}`;
+  const searchUrl = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${query}&page=${page}`;
+  const genreUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&with_genres=${genreId}&page=${page}`;
+ 
 
   const fetchUrl = genreId ? genreUrl : searchUrl;
 
@@ -54,6 +56,10 @@ const SearchPage = () => {
           ))}
         </ul>
       )}
+      {console.log(page)}
+      {page > 1 ? (<>
+      <button onClick={()=>(setPage(page -1))}>prev page</button> 
+      <button onClick={()=>(setPage(page +1))}>next page</button></>):(<button onClick={()=>(setPage(page +1))}>next page</button>)}
     </div>
   );
 };
