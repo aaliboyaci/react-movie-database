@@ -23,7 +23,7 @@ const Header = () => {
 
   return (
     <div>
-      <h1>Movie Database App</h1>
+      <h1><b>Movie Database App</b></h1>
       <form onSubmit={handleSubmit}>
         <input id="searchInput"  type="text"
           value={searchTerm}

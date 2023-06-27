@@ -1,0 +1,64 @@
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+.fav-container{
+    text-align: center;
+    
+}
+.fav-movie {
+    display: flex;
+    margin-bottom: 20px;
+    background-color: #1f2738;
+    padding: 40px 30px 5px 30px;
+    border: white;
+    border-width: 3px;
+    animation: myAnim 1s ease-in-out 0s 1 normal forwards;
+   
+  }
+  
+  .fav-left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 35px;
+  }
+  
+  .fav-image img {
+    width: 100px;
+    height: 150px;
+    object-fit: cover;
+    transition: transform 0.2s;
+   
+  }
+  
+  .fav-image img:hover {
+    transform: scale(1.08);
+   
+  }
+
+  .fav-year {
+    text-align: center;
+    color: #7d8391;
+  }
+  
+  .fav-right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 290px;
+  }
+
+  @keyframes myAnim {
+	0% {
+		opacity: 0;
+		transform: translateX(-250px);
+	}
+
+	100% {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
