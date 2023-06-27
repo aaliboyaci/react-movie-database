@@ -1,80 +1,91 @@
-ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-
-.fav-container{
-    text-align: center;
-    
+.fav-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 10px;
 }
+
 .fav-movie {
-    display: flex;
-    margin-bottom: 20px;
-    background-color: #1f2738;
-    padding: 40px 30px 5px 30px;
-    border: white;
-    border-width: 3px;
-    animation: myAnim 1s ease-in-out 0s 1 normal forwards;
-   
-  }
-  
-  .fav-left {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-right: 35px;
-  }
-  
-  .fav-image img {
-    width: 100px;
-    height: 150px;
-    object-fit: cover;
-    transition: transform 0.2s;
-    border-radius: 10px 10px 0 0 ;
-   
-  }
-  .fav-link{
-    display: block;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+  background-color: #1f2738;
+  padding: 40px 30px 5px 30px;
+  border: white;
+  border-width: 3px;
+  animation: myAnim 1s ease-in-out 0s 1 normal forwards;
+}
+
+.fav-top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.fav-bot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 290px;
+  text-align: center;
+}
+
+.fav-image img {
+  width: 100px;
+  height: 150px;
+  object-fit: cover;
+  transition: transform 0.2s;
+  border-radius: 10px 10px 0 0;
+}
+
+.fav-link {
+  display: block;
   text-decoration: none;
   color: inherit;
+}
+
+.fav-image img:hover {
+  transform: scale(1.08);
+}
+
+.fav-year {
+  text-align: center;
+  color: #7d8391;
+  font-size: 16px;
+}
+
+.fav-title{
+  font-size: 15px;
+  color:white;
+}
+.fav-des{
+  font-size: 9px;
+  color:white;
+  margin-bottom: 10px;
+}
+
+
+
+.empty-button {
+  background-color: rgb(125, 30, 30);
+  color: white;
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 8px;
+  font-size: 9px;
+}
+
+.empty-button:hover {
+  background-color: red;
+}
+
+@keyframes myAnim {
+  0% {
+    opacity: 0;
+    transform: translateX(-250px);
   }
 
-  .fav-image img:hover {
-    transform: scale(1.08);
-   
+  100% {
+    opacity: 1;
+    transform: translateX(0);
   }
-
-  .fav-year {
-    text-align: center;
-    color: #7d8391;
-  }
-  
-  .fav-right {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 290px;
-  }
-
-  .empty-button{
-    background-color: rgb(125, 30, 30);
-    color:white;
-    border-radius: 10px;
-    padding: 10px;
-    margin-bottom: 8px;
-  }
-  .empty-button:hover{
-    background-color: red;
-  }
-  @keyframes myAnim {
-	0% {
-		opacity: 0;
-		transform: translateX(-250px);
-	}
-
-	100% {
-		opacity: 1;
-		transform: translateX(0);
-	}
 }
