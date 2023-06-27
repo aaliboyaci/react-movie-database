@@ -1,0 +1,14 @@
+.genres-container{
+    display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 10px;
+}
+
+.genre-box{
+    border-radius: 10px;
+    border: none;
+    padding: 9px;
+    background-color: aliceblue;
+    color: rgb(36, 43, 86);
+    text-align: center;
+}

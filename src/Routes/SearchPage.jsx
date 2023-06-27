@@ -1,28 +1,31 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import "./SearchPage.css";
 
 const SearchPage = () => {
   const [movies, setMovies] = useState([]);
   const location = useLocation();
+  const genreId = new URLSearchParams(location.search).get('genreid');
   const query = new URLSearchParams(location.search).get('query');
+  const apiKey = `6ef10486c5df46ca61884c8b042d53bd`;
+  const searchUrl = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${query}`;
+  const genreUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&with_genres=${genreId}`;
+
+  const fetchUrl = genreId ? genreUrl : searchUrl;
 
   useEffect(() => {
     const fetchMovies = async () => {
       try {
-        const response = await fetch(
-          `https://api.themoviedb.org/3/search/movie?query=${query}&api_key=6ef10486c5df46ca61884c8b042d53bd`
-        );
+        const response = await fetch(fetchUrl);
         const data = await response.json();
-        setMovies(data.results); // API'den alınan sonuçları movies state'ine atıyoruz
+        setMovies(data.results);
       } catch (error) {
         console.error('Error fetching movies:', error);
       }
     };
 
-    fetchMovies(); // bileşen yüklendiğinde fetchMovies fonksiyonunu çağırıyoruz
-  }, [query]);
+    fetchMovies();
+  }, [fetchUrl]);
 
   return (
     <div id="search-container">
@@ -44,7 +47,7 @@ const SearchPage = () => {
                 />
                 <div className="movie-info">
                   <h3 className="movie-title">{movie.title}</h3>
-                  <p className="movie-year">{movie.release_date.substring(0, 4)}</p>
+                  <p className="movie-year">{movie.release_date?.substring(0, 4)}</p>
                 </div>
               </Link>
             </li>
