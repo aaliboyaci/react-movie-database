@@ -1,20 +1,33 @@
 #search-container {
   width: 75%;
   text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .movie-list {
   display: flex;
   flex-wrap: wrap;
+  flex-direction: row;
   justify-content: center;
   list-style: none;
   padding: 0;
+}
+ul, li {
+  padding: 0px;
+  margin: 0px;
+  
 }
 
 .movie-item {
   width: calc(23% - 40px);
   margin: 10px;
   border-radius: 8px;
+  display: flex;
+  flex-wrap:nowrap;
+  justify-content: center;
+
 }
 
 .movie-link {
@@ -36,15 +49,17 @@
 
 .movie-info {
   padding: 10px;
+  align-items: center;
+  justify-content: center; 
+  margin: auto;
 }
 
 .movie-title {
-  font-size: 16px;
-  margin: 0;
+  font-size: 14px;
 }
 
 .movie-year {
-  margin: 5px 0;
+  margin: 5px 0px 0px 0px ;
   color: #888;
 }
 

@@ -48,7 +48,7 @@ const SearchPage = () => {
                   }}
                 />
                 <div className="movie-info">
-                  <h3 className="movie-title">{movie.title}</h3>
+                  <div className="movie-title">{movie.title}</div>
                   <p className="movie-year">{movie.release_date?.substring(0, 4)}</p>
                 </div>
               </Link>

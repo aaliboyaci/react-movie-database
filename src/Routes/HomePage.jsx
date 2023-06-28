@@ -53,8 +53,8 @@ export default function HomePage() {
                   src={`https://image.tmdb.org/t/p/w500/${randomMovie.poster_path}`}
                   alt="Random Movie"
                 />
-                <h3 className="movie-title">{randomMovie.title}</h3>
-                <p className="movie-year">{randomMovie.release_date.substring(0, 4)}</p>
+                <h3 className="random-title">{randomMovie.title}</h3>
+                <p className="random-year">{randomMovie.release_date.substring(0, 4)}</p>
               </Link>
             </>
           )}

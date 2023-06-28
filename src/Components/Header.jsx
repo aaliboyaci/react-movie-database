@@ -34,19 +34,19 @@ const Header = () => {
 
       <nav>
         <ul>
-          <li>
+          <div id="menu-item">
             <Link to="/">Home</Link>
-          </li>
-          <li>
+          </div >
+          <div id="menu-item">
             <Link to="/GenresPage">Genres</Link>
 
-          </li>
-          <li>
-            <Link to="/Imdb100">imdbTop100</Link>
-          </li>
-          <li>
+          </div>
+          <div id="menu-item">
+            <Link to="/Trending">Trending</Link>
+          </div>
+          <div id="menu-item">
             <Link to="/WatchList">Watch List</Link>
-          </li>
+          </div>
         </ul>
       </nav>
       <hr></hr>

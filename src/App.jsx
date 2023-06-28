@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import Header from './Components/Header';
 import Footer from './Components/Footer';
 import HomePage from './Routes/HomePage';
-import Imdb100 from './Routes/Imdb100';
+import Trending from './Routes/Trending';
 import GenresPage from './Routes/GenresPage';
 import WatchList from './Routes/WatchList';
 import Details from "./Routes/Details";
@@ -23,7 +23,7 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/Imdb100" element={<Imdb100 />} />
+          <Route path="/Trending" element={<Trending />} />
           <Route path="/GenresPage" element={<GenresPage />} />
           <Route path="/WatchList" element={<WatchList />} />
           <Route path="/Details/:showId" element={<Details />} />
