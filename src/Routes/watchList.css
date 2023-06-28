@@ -1,20 +1,25 @@
 .fav-container {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-gap: 10px;
+  grid-gap: 15px;
+  justify-content: space-between;
+  align-items: center; 
 }
+
 
 .fav-movie {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-bottom: 20px;
-  background-color: #1f2738;
-  padding: 40px 30px 5px 30px;
-  border: white;
-  border-width: 3px;
+  padding: 30px 30px 10px 30px;
+  border: 1px solid white; 
+  border-radius: 10px;
+  border-bottom-width: 0px;
+  border-left-width: 0px;
   animation: myAnim 1s ease-in-out 0s 1 normal forwards;
 }
+
 
 .fav-top {
   display: flex;
@@ -30,8 +35,8 @@
 }
 
 .fav-image img {
-  width: 100px;
-  height: 150px;
+  width: 130px;
+  height: 190px;
   object-fit: cover;
   transition: transform 0.2s;
   border-radius: 10px 10px 0 0;
@@ -50,15 +55,15 @@
 .fav-year {
   text-align: center;
   color: #7d8391;
-  font-size: 16px;
+  font-size: 18px;
 }
 
 .fav-title{
-  font-size: 15px;
+  font-size: 16px;
   color:white;
 }
 .fav-des{
-  font-size: 9px;
+  font-size: 11px;
   color:white;
   margin-bottom: 10px;
 }
