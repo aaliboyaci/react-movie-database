@@ -43,7 +43,7 @@ export default function HomePage() {
       <div className="card">
         <div className="header">
           <h2>Random Movie Generator</h2>
-          <div class="lds-hourglass"></div>
+          <div className="lds-hourglass"></div>
         </div>
         <div className="content">
           {randomMovie && (
@@ -59,7 +59,7 @@ export default function HomePage() {
             </>
           )}
         </div>
-        <button className='random-btn'  onClick={handleRandomButtonClick}> Surprise Me !</button>
+        <button className='random-btn' onClick={handleRandomButtonClick}> Surprise Me !</button>
       </div>
 
     </div>
