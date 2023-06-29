@@ -21,24 +21,33 @@
   .moviePoster {
     width: 190px;
     height: auto;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
   }
   
   .genres {
     margin-bottom: 10px;
+    display: flex;
+    user-select: none;
   }
   
   .genres-label {
     font-weight: bold;
     margin-right: 5px;
+    
   }
   
   .genre {
     display: inline-block;
     padding: 4px 8px;
-    margin-right: 5px;
-    background-color: #176966;
-    border-radius: 4px;
+    margin-right: 6px;
+    margin-bottom: 6px;
+    background-color: #08591b;
+    border-radius: 3px;
+    font-size: 12px;
+  }
+  .genre:hover{
+    background-color: #04d134;
+    color: #08591b;
   }
   
   .release-date {

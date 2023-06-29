@@ -39,6 +39,7 @@ ul, li {
 
 .movie-link:hover {
   transform: scale(1.08);
+  color: #04d134;
 }
 
 .movie-poster {

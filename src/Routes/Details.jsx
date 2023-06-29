@@ -3,11 +3,14 @@ import { useParams } from 'react-router-dom';
 import './Details.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { addFavoriteMovie, removeFavoriteMovie } from '../store/actions';
+import { useNavigate } from 'react-router-dom';
+
 
 
 const Details = () => {
   const { showId } = useParams();
   const [movie, setMovie] = useState(null);
+  const navigate = useNavigate();
 
   const dispatch = useDispatch();
   const favoriteMovies = useSelector((state) => state.favoriteMovies);
@@ -42,6 +45,10 @@ const Details = () => {
     }
   };
 
+  const handleGenreClick = (genreId) => {
+    navigate(`/search?genreid=${genreId}`);
+  };
+
   return (
     <div className="movie-details">
       <div className="movie-info">
@@ -51,12 +58,12 @@ const Details = () => {
           src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
           alt={movie.original_title}
         />
-        <p className="genres">
+        <div className="genres">
           <span className="genres-label"><b>Genre(s):</b></span>
           {movie.genres.map((genre, i) => (
-            <span key={i} className="genre">{genre.name}</span>
+            <span key={i} className="genre" onClick={() => handleGenreClick(genre.id)}>{genre.name}</span>
           ))}
-        </p>
+        </div>
         <p className="release-date"><b>Release Date:</b> {movie.release_date}</p>
         <div className="overview">
           <b>Overview:</b>

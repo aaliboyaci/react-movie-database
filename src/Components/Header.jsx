@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, Navigate } from 'react-router-dom';
 import './header.css';
 import { useNavigate } from 'react-router-dom';
+import searchimg from "../assets/search.png"
 
 const Header = () => {
 
@@ -29,7 +30,7 @@ const Header = () => {
           value={searchTerm}
           onChange={handleInputChange}
           placeholder="Search for a movie" />
-        <button className="searchbtn" type="submit">Search</button>
+        <button className="searchbtn" type="submit">Search <img src={searchimg} alt='search' className='searchimg'></img></button>
       </form>
 
       <nav>

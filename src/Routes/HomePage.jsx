@@ -11,7 +11,7 @@ export default function HomePage() {
 
   const fetchRandomMovie = async () => {
     try {
-      const randomPage = Math.floor(Math.random() * 50) + 1; // Rastgele bir sayfa numarası seçiyoruz (1-50 arası)
+      const randomPage = Math.floor(Math.random() * 40) + 1; // Rastgele bir sayfa numarası seçiyoruz (1-50 arası)
       const response = await fetch(
         `https://api.themoviedb.org/3/discover/movie?api_key=6ef10486c5df46ca61884c8b042d53bd&sort_by=popularity.desc&page=${randomPage}`
       );
@@ -39,11 +39,11 @@ export default function HomePage() {
 
   return (
     <div className="home-container">
+
       <div className="card">
         <div className="header">
           <h2>Random Movie Generator</h2>
-          <img src={cycle}
-            style={{ width: '30px' }} onClick={handleRandomButtonClick} />
+          <div class="lds-hourglass"></div>
         </div>
         <div className="content">
           {randomMovie && (
@@ -59,7 +59,9 @@ export default function HomePage() {
             </>
           )}
         </div>
+        <button className='random-btn'  onClick={handleRandomButtonClick}> Surprise Me !</button>
       </div>
+
     </div>
   );
 }

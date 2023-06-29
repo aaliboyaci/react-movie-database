@@ -20,6 +20,7 @@ const SearchPage = () => {
       try {
         const response = await fetch(fetchUrl);
         const data = await response.json();
+        console.log(data);
         setMovies(data.results);
       } catch (error) {
         console.error('Error fetching movies:', error);
@@ -56,10 +57,13 @@ const SearchPage = () => {
           ))}
         </ul>
       )}
-      {console.log(page)}
-      {page > 1 ? (<>
+      {console.log("sayfa:no") + console.log(page)};
+      {/* burayı düzelt*/ }
+      {movies.length > 0 ?
+      (page > 1 ? (<>
       <button onClick={()=>(setPage(page -1))}>prev page</button> 
-      <button onClick={()=>(setPage(page +1))}>next page</button></>):(<button onClick={()=>(setPage(page +1))}>next page</button>)}
+      <button onClick={()=>(setPage(page +1))}>next page</button></>):(<button onClick={()=>(setPage(page +1))}>next page</button>)) 
+      :(<div> ? </div>)}
     </div>
   );
 };
