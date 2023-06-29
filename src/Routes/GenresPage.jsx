@@ -1,29 +1,31 @@
 import React, { useState, useEffect } from 'react';
 import "./genres.css"
 import { useNavigate } from 'react-router-dom';
+import useFetch from "../Hooks/useFetch";
+import Loading from "../Components/Loading"
 
 export default function GenresPage() {
   const [genres, setGenres] = useState([]);
   const navigate = useNavigate();
 
   const apiKey = '6ef10486c5df46ca61884c8b042d53bd';
-  const genreUrl = `https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}`;
+  const url = `https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}`;
+
+  const { isLoading, data, error } = useFetch(url);
 
   useEffect(() => {
-    const fetchGenres = async () => {
-      try {
-        const response = await fetch(genreUrl);
-        const data = await response.json();
-        const genres = data.genres;
-        console.log(genres);
-        setGenres(genres);
-      } catch (error) {
-        console.error('Error fetching genres:', error);
-      }
-    };
+    if (data !== null && data.length > 1) {
+      setGenres(data);
+    }
+  }, [isLoading, data]);
 
-    fetchGenres();
-  }, []);
+  if (isLoading) {
+    return <Loading />;
+  }
+
+  if (error) {
+    return <p>Error: {error}</p>;
+  }
 
   const handleGenreClick = (genreId) => {
     navigate(`/search?genreid=${genreId}`);

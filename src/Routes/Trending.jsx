@@ -2,30 +2,29 @@ import React from 'react'
 import { Link, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import "./SearchPage.css";
+import useFetch from "../Hooks/useFetch";
+import Loading from "../Components/Loading"
 
 export default function Trending() {
 
   const [trendingMovies, setTrendingMovies] = useState([]);
   const apiKey = `6ef10486c5df46ca61884c8b042d53bd`;
-
+  const url = `https://api.themoviedb.org/3/trending/movie/week?api_key=${apiKey}`;
+  const { isLoading, data, error } = useFetch(url);
+  
   useEffect(() => {
-    const fetchTrendingMovies = async () => {
-      try {
-        const response = await fetch(
-          `https://api.themoviedb.org/3/trending/movie/week?api_key=${apiKey}`
-        );
-        const data = await response.json();
-        setTrendingMovies(data.results);
-      } catch (error) {
-        console.log(error);
-      }
-    };
+    if (!isLoading && data !== null && data.length !== 0) {
+      setTrendingMovies(data);
+    }
+  }, [isLoading, data]);
 
-    fetchTrendingMovies();
-  }, []);
+  if (isLoading) {
+    return <Loading />;
+  }
 
-
-
+  if (error) {
+    return <p>Error: {error}</p>;
+  }
 
   return (
     <div id="search-container">

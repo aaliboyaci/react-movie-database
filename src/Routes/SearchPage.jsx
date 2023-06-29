@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import "./SearchPage.css";
+import useFetch from "../Hooks/useFetch";
+import Loading from "../Components/Loading"
+
 
 const SearchPage = () => {
   const [movies, setMovies] = useState([]);
@@ -15,20 +18,24 @@ const SearchPage = () => {
 
   const fetchUrl = genreId ? genreUrl : searchUrl;
 
+  const { isLoading, data, error } = useFetch(fetchUrl);
+  console.log(data);
+/* BURADA BUG VAR HATALI ARAMA YAPILINCA EN SON YAPILAN DÜZGÜN ARAMA SONUÇLARI SAYFADA KAILIYOR BUNU DÜZELT */
+  
   useEffect(() => {
-    const fetchMovies = async () => {
-      try {
-        const response = await fetch(fetchUrl);
-        const data = await response.json();
-        console.log(data);
-        setMovies(data.results);
-      } catch (error) {
-        console.error('Error fetching movies:', error);
-      }
-    };
+    if (!isLoading && data !== null && data.length !== 0) {
+      setMovies(data);
+    }
+  }, [isLoading, data]);
 
-    fetchMovies();
-  }, [fetchUrl]);
+  if (isLoading) {
+    return <Loading />;
+  }
+
+  if (error) {
+    return <p>Error: {error}</p>;
+  }
+
 
   return (
     <div id="search-container">
