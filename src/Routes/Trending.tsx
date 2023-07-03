@@ -1,16 +1,21 @@
-import React from 'react'
-import { Link, useLocation } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import "./SearchPage.css";
 import useFetch from "../Hooks/useFetch";
-import Loading from "../Components/Loading"
+import Loading from "../Components/Loading";
 
-export default function Trending() {
 
-  const [trendingMovies, setTrendingMovies] = useState([]);
+interface Trend{
+  id: number;
+  title: string;
+  release_date: string;
+  poster_path: string;
+}
+const Trending: React.FC = () => {
+  const [trendingMovies, setTrendingMovies] = useState<Trend[]>([]);
   const apiKey = `6ef10486c5df46ca61884c8b042d53bd`;
   const url = `https://api.themoviedb.org/3/trending/movie/week?api_key=${apiKey}`;
-  const { isLoading, data, error } = useFetch(url);
+  const { isLoading, data, error } : any = useFetch(url);
   
   useEffect(() => {
     if (!isLoading && data !== null && data.length !== 0) {
@@ -40,8 +45,8 @@ export default function Trending() {
                   src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
                   alt={movie.title}
                   className="movie-poster"
-                  onError={(e) => {
-                    e.target.src = 'src/assets/404-error.png';
+                  onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+                    e.currentTarget.src = 'src/assets/404-error.png';
                   }}
                 />
                 <div className="movie-info">
@@ -53,8 +58,8 @@ export default function Trending() {
           ))}
         </ul>
       )}
-
-
     </div>
-  )
-}
+  );
+};
+
+export default Trending;

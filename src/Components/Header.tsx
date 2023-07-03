@@ -1,46 +1,48 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link, Navigate } from 'react-router-dom';
 import './header.css';
 import { useNavigate } from 'react-router-dom';
-import searchimg from "../assets/search.png"
+import searchimg from '../assets/search.png';
 
-const Header = () => {
+interface HeaderProps {}
 
+const Header: React.FC<HeaderProps> = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const navigate = useNavigate();
 
-
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     navigate(`/search?query=${encodeURIComponent(searchTerm)}`);
     setSearchTerm('');
   };
 
-
-
   return (
     <div>
       <h1>Movie Database App</h1>
       <form onSubmit={handleSubmit}>
-        <input id="searchInput" type="text"
+        <input
+          id="searchInput"
+          type="text"
           value={searchTerm}
           onChange={handleInputChange}
-          placeholder="Search for a movie" />
-        <button className="searchbtn" type="submit">Search <img src={searchimg} alt='search' className='searchimg'></img></button>
+          placeholder="Search for a movie"
+        />
+        <button className="searchbtn" type="submit">
+          Search <img src={searchimg} alt="search" className="searchimg" />
+        </button>
       </form>
 
       <nav>
         <ul>
           <div id="menu-item">
             <Link to="/">Home</Link>
-          </div >
+          </div>
           <div id="menu-item">
             <Link to="/GenresPage">Genres</Link>
-
           </div>
           <div id="menu-item">
             <Link to="/Trending">Trending</Link>
