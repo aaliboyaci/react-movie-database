@@ -4,14 +4,19 @@ import { useNavigate } from 'react-router-dom';
 import useFetch from "../Hooks/useFetch";
 import Loading from "../Components/Loading"
 
+interface Genre {
+  id: number;
+  name: string;
+}
+
 export default function GenresPage() {
-  const [genres, setGenres] = useState([]);
+  const [genres, setGenres] = useState<Genre[]>([]);
   const navigate = useNavigate();
 
   const apiKey = '6ef10486c5df46ca61884c8b042d53bd';
   const url = `https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}`;
 
-  const { isLoading, data, error } = useFetch(url);
+  const { isLoading, data, error }:any = useFetch(url);
 
   useEffect(() => {
     if (data !== null && data.length > 1) {
@@ -27,7 +32,7 @@ export default function GenresPage() {
     return <p>Error: {error}</p>;
   }
 
-  const handleGenreClick = (genreId) => {
+  const handleGenreClick = (genreId:number) => {
     navigate(`/search?genreid=${genreId}`);
   };
 

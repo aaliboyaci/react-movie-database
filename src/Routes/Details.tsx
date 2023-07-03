@@ -5,16 +5,40 @@ import { useSelector, useDispatch } from 'react-redux';
 import { addFavoriteMovie, removeFavoriteMovie } from '../store/actions';
 import { useNavigate } from 'react-router-dom';
 
+interface CrewMember {
+  job: string;
+  department: string;
+  name: string;
+}
+
+interface CastMember {
+  id: number;
+  name: string;
+}
+
+interface Movie {
+  id: number;
+  original_title: string;
+  poster_path: string;
+  genres: { id: number; name: string }[];
+  release_date: string;
+  overview: string;
+  status: string;
+  vote_average: number;
+  vote_count: number;
+  budget: number;
+}
+
 const Details = () => {
-  const { showId } = useParams();
-  const [movie, setMovie] = useState(null);
-  const [credits, setCredits] = useState(null);
+  const { showId } = useParams<{ showId: string }>();
+  const [movie, setMovie] = useState<Movie | null>(null);
+  const [credits, setCredits] = useState<any | null>(null);
   const navigate = useNavigate();
-  const [director, setDirector] = useState(null);
-  const [mainCast, setMainCast] = useState(null);
+  const [director, setDirector] = useState<CrewMember | null>(null);
+  const [mainCast, setMainCast] = useState<CastMember[] | null>(null);
 
   const dispatch = useDispatch();
-  const favoriteMovies = useSelector((state) => state.favoriteMovies);
+  const favoriteMovies = useSelector((state: any) => state.favoriteMovies);
 
   const myapikey = `6ef10486c5df46ca61884c8b042d53bd`
   const castUrl = `https://api.themoviedb.org/3/movie/${showId}/credits?api_key=${myapikey}`;
@@ -30,7 +54,7 @@ const Details = () => {
         const castResponse = await fetch(castUrl);
         const castData = await castResponse.json();
         setCredits(castData);
-        setDirector(castData.crew.find((person) => person.job === 'Director' && person.department === 'Directing'));
+        setDirector(castData.crew.find((person: CrewMember) => person.job === 'Director' && person.department === 'Directing'));
         setMainCast(castData.cast.slice(0, 3));
       } catch (error) {
         console.error('Error fetching movie details:', error);
@@ -44,7 +68,7 @@ const Details = () => {
     return <p>Loading...</p>;
   }
 
-  const isMovieFavorite = favoriteMovies.some((favMovie) => favMovie.id === movie.id);
+  const isMovieFavorite = favoriteMovies.some((favMovie: Movie) => favMovie.id === movie.id);
 
   const handleFavoriteClick = () => {
     if (isMovieFavorite) {
@@ -54,7 +78,7 @@ const Details = () => {
     }
   };
 
-  const handleGenreClick = (genreId) => {
+  const handleGenreClick = (genreId: number) => {
     navigate(`/search?genreid=${genreId}`);
   };
 
@@ -78,28 +102,28 @@ const Details = () => {
           <b>Overview:</b>
           <div className="movie-text">{movie.overview}</div>
         </div>
-        <p className="status"><b>Status: </b>{movie.status}</p>
+        <p style={{ color: movie.status === 'Released' ? '#04d134' : 'red' }}>
+        <b>Status: </b>{movie.status}</p>
         <p className="vote-average"><b>Vote Average: </b>{movie.vote_average}</p>
         <p className="vote-count"><b>Vote Count: </b>{movie.vote_count}</p>
-        <button className={`favorite-button ${isMovieFavorite ? 'favorited' : ''}`} onClick={handleFavoriteClick}>
+        <button className={`${isMovieFavorite ? 'favorited' : 'notfavorited'}`} onClick={handleFavoriteClick}>
           {isMovieFavorite ? 'Remove from Favorites' : 'Add to Favorites'}
         </button>
-      <hr></hr>
-      <div className="movie-cast">
-        <h3 className="cast-title">Cast:</h3>
-        {director && <p><b>Director:</b> {director.name}</p>}
-        <p><b>Main Cast:</b></p>
-        <ul className="cast-list">
-          {credits && mainCast.map((person) => (
-            <li key={person.id}><p>{person.name}</p></li>
-          ))}
-        </ul>
         <hr></hr>
-        <p className="budget"><b>Budget: </b>$ {movie.budget}</p>
-     
+        <div className="movie-cast">
+          <h3 className="cast-title">Cast:</h3>
+          {director && <p><b>Director:</b> {director.name}</p>}
+          <p><b>Main Cast:</b></p>
+          <ul className="cast-list">
+            {credits && mainCast?.map((person: CastMember) => (
+              <li key={person.id}><p>{person.name}</p></li>
+            ))}
+          </ul>
+          <hr></hr>
+          <p className="budget"><b>Budget: </b>$ {movie.budget}</p>
         </div>
       </div>
-      </div>
+    </div>
   );
 };
 
