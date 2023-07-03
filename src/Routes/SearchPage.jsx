@@ -3,6 +3,8 @@ import { Link, useLocation } from 'react-router-dom';
 import "./SearchPage.css";
 import useFetch from "../Hooks/useFetch";
 import Loading from "../Components/Loading"
+import { useNavigate } from 'react-router-dom';
+
 
 
 const SearchPage = () => {
@@ -14,21 +16,30 @@ const SearchPage = () => {
   const apiKey = `6ef10486c5df46ca61884c8b042d53bd`;
   const searchUrl = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${query}&page=${page}`;
   const genreUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&with_genres=${genreId}&page=${page}`;
+  const navigate = useNavigate();
  
 
   const fetchUrl = genreId ? genreUrl : searchUrl;
 
   const { isLoading, data, error } = useFetch(fetchUrl);
+  console.log("data");
   console.log(data);
-/* BURADA BUG VAR HATALI ARAMA YAPILINCA EN SON YAPILAN DÜZGÜN ARAMA SONUÇLARI SAYFADA KAILIYOR BUNU DÜZELT */
   
+
   useEffect(() => {
     if (!isLoading && data !== null && data.length !== 0) {
       setMovies(data);
     }
+
+    else if (data == null || data.length == 0 ){ /* customHook sonrası bugı düzelten kod */
+      setMovies([]);
+    }
   }, [isLoading, data]);
 
+  
+
   if (isLoading) {
+    
     return <Loading />;
   }
 
@@ -41,7 +52,8 @@ const SearchPage = () => {
     <div id="search-container">
       <h2>Search Results</h2>
       {movies.length === 0 ? (
-        <p>No movies found.</p>
+      
+        <div className="movie-item">No movies found.</div>
       ) : (
         <ul className="movie-list">
           {movies.map((movie) => (
@@ -64,13 +76,13 @@ const SearchPage = () => {
           ))}
         </ul>
       )}
-      {console.log("sayfa:no") + console.log(page)};
-      {/* burayı düzelt*/ }
-      {movies.length > 0 ?
+      
+      {movies.length > 0 ? 
       (page > 1 ? (<>
       <button onClick={()=>(setPage(page -1))}>prev page</button> 
-      <button onClick={()=>(setPage(page +1))}>next page</button></>):(<button onClick={()=>(setPage(page +1))}>next page</button>)) 
-      :(<div> ? </div>)}
+      <button onClick={()=>(setPage(page +1))}>next page</button></>):(<button onClick={()=>(setPage(page +1))}>next page</button>))
+          :(<p></p>)
+    }
     </div>
   );
 };
