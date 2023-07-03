@@ -2,7 +2,7 @@ import React from 'react';
 import './HomePage.css';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import cycle from "../assets/recycle.png"
+import dice from "../assets/dice.png"
 
 
 export default function HomePage() {
@@ -43,7 +43,7 @@ export default function HomePage() {
       <div className="card">
         <div className="header">
           <h2>Random Movie Generator</h2>
-          <div className="lds-hourglass"></div>
+          <img src={dice} alt="random" className="dice"></img>
         </div>
         <div className="content">
           {randomMovie && (

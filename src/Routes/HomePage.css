@@ -75,26 +75,9 @@ p {
   color: #888;
 }
 
-
-.lds-hourglass {
-  display: inline-block;
-  position: relative;
-  width: 25px;
-  height: 25px;
-  margin-bottom: 10px;
-}
-
-.lds-hourglass:after {
-  content: " ";
-  display: block;
-  border-radius: 50%;
-  width: 0;
-  height: 0;
-  margin: 8px;
-  box-sizing: border-box;
-  border: 10px solid #fff;
-  border-color: #04d134 transparent #04d134 transparent;
-  animation: lds-hourglass 1.4s infinite;
+.dice{
+  width: 30px;
+  filter: invert(46%) sepia(92%) saturate(866%) hue-rotate(93deg) brightness(104%) contrast(97%);
 }
 
 .random-btn {
@@ -110,20 +93,4 @@ p {
 .random-btn:hover {
   background-color: #04d134;
   color: #1c1c1c;
-}
-
-@keyframes lds-hourglass {
-  0% {
-    transform: rotate(0);
-    animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
-  }
-
-  50% {
-    transform: rotate(900deg);
-    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
-  }
-
-  100% {
-    transform: rotate(1800deg);
-  }
 }
