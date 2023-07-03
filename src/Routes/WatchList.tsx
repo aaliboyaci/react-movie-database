@@ -5,8 +5,16 @@ import { useSelector, useDispatch } from 'react-redux';
 import { removeFavoriteMovie } from '../store/actions';
 import { Link } from 'react-router-dom';
 
-export default function WatchList() {
-  const favoriteMovies = useSelector((state) => state.favoriteMovies);
+interface Movie {
+  id: number;
+  poster_path: string;
+  title: string;
+  release_date: string;
+  overview: string;
+}
+
+const WatchList: React.FC = () => {
+  const favoriteMovies = useSelector((state: any) => state.favoriteMovies);
   const dispatch = useDispatch();
 
   const [page, setPage] = useState(1);
@@ -16,7 +24,7 @@ export default function WatchList() {
   const indexOfFirstMovie = indexOfLastMovie - moviesPerPage;
   const currentMovies = favoriteMovies.slice(indexOfFirstMovie, indexOfLastMovie);
 
-  const handleRemoveClick = (movieId) => {
+  const handleRemoveClick = (movieId: number) => {
     dispatch(removeFavoriteMovie(movieId));
   };
 
@@ -28,7 +36,7 @@ export default function WatchList() {
           <p>No movies in your watch list.</p>
         ) : (
           <>
-            {currentMovies.map((movie) => (
+            {currentMovies.map((movie: Movie) => (
               <div key={movie.id} className="fav-movie">
                 <Link to={`/Details/${movie.id}`} className="fav-link">
                   <div className="fav-top">
@@ -36,7 +44,7 @@ export default function WatchList() {
                       <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt={movie.title} />
                     </div>
                     <div className="fav-year">
-                      <b>{movie.release_date.slice(0,4)}</b>
+                      <b>{movie.release_date.slice(0, 4)}</b>
                     </div>
                   </div>
                 </Link>
@@ -45,7 +53,9 @@ export default function WatchList() {
                     <div className="fav-title">{movie.title}</div>
                     <div className="fav-des">{movie.overview.slice(0, 95)}...</div>
                   </Link>
-                  <button className="empty-button" onClick={() => handleRemoveClick(movie.id)}>Remove From Favs</button>
+                  <button className="empty-button" onClick={() => handleRemoveClick(movie.id)}>
+                    Remove From Favs
+                  </button>
                 </div>
               </div>
             ))}
@@ -65,4 +75,6 @@ export default function WatchList() {
       )}
     </>
   );
-}
+};
+
+export default WatchList;
