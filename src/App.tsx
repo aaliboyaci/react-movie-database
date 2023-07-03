@@ -18,21 +18,20 @@ function App() {
   return (
     <div id="container">
       <Provider store={store}>
-      <Router
-      basename={import.meta.env.DEV ? '/' : '/react-movie-database/'}>
-        <Header />
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/Trending" element={<Trending />} />
-          <Route path="/GenresPage" element={<GenresPage />} />
-          <Route path="/WatchList" element={<WatchList />} />
-          <Route path="/Details/:showId" element={<Details />} />
-          <Route path="/Search" element={<SearchPage />} />
-          <Route path="/*" element={<ErrorPage />} />
-        </Routes>
-        <br></br>
-        <Footer />
-      </Router>
+        <Router basename={process.env.NODE_ENV === 'development' ? '/' : '/react-movie-database/'}>
+          <Header />
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/Trending" element={<Trending />} />
+            <Route path="/GenresPage" element={<GenresPage />} />
+            <Route path="/WatchList" element={<WatchList />} />
+            <Route path="/Details/:showId" element={<Details />} />
+            <Route path="/Search" element={<SearchPage />} />
+            <Route path="/*" element={<ErrorPage />} />
+          </Routes>
+          <br></br>
+          <Footer />
+        </Router>
       </Provider>
     </div>
   );
