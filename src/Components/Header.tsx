@@ -4,7 +4,7 @@ import './header.css';
 import { useNavigate } from 'react-router-dom';
 import searchimg from '../assets/search.png';
 
-interface HeaderProps {}
+interface HeaderProps { }
 
 const Header: React.FC<HeaderProps> = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -24,15 +24,9 @@ const Header: React.FC<HeaderProps> = () => {
     <div>
       <h1>Movie Database App</h1>
       <form onSubmit={handleSubmit}>
-        <input
-          id="searchInput"
-          type="text"
-          value={searchTerm}
-          onChange={handleInputChange}
-          placeholder="Search for a movie"
-        />
-        <button className="searchbtn" type="submit">
-          Search <img src={searchimg} alt="search" className="searchimg" />
+        <input id="searchInput" type="text" value={searchTerm} onChange={handleInputChange} placeholder="Search for a movie" />
+        <button className="searchbtn" type="submit"> Search
+          <img src={searchimg} alt="search" className="searchimg" />
         </button>
       </form>
 

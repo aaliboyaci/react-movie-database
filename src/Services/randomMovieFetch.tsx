@@ -1,0 +1,33 @@
+import React, { useEffect } from 'react';
+import { baseUrl, apiKey } from '../Services/tmdbApiServices';
+import axios from 'axios';
+
+interface Movie {
+    id: number;
+    name: string;
+    title: string;
+    release_date: string;
+    poster_path: string;
+  }
+  
+  const useRandomMovieFetch = (setRandomMovie: React.Dispatch<React.SetStateAction<Movie | null>>, dice :number) => {
+    useEffect(() => {
+      const fetchData = async () => {
+        const randomPage: number = Math.floor(Math.random() * 40) + 1;
+        const randomMovieUrl: string = `${baseUrl}discover/movie?api_key=${apiKey}&sort_by=popularity.desc&page=${randomPage}`;
+  
+        try {
+          const response = await axios.get(randomMovieUrl);
+          const randomIndex = Math.floor(Math.random() * response.data.results.length);
+          const randomData = response.data.results[randomIndex];
+          setRandomMovie(randomData);
+        } catch (error) {
+          console.log('Axios error:', error);
+        }
+      };
+  
+      fetchData();
+    }, [setRandomMovie,dice]);
+  };
+  
+  export default useRandomMovieFetch;
