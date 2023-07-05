@@ -1,18 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import "./SearchPage.css";
-import useFetch from "../Hooks/useFetch";
 import Loading from "../Components/Loading"
-import searchFetch from "../Services/searchMovieFetch"
 import searchMovieFetch from '../Services/searchMovieFetch';
+import Movie from "../Services/Movie"
 
-interface Movie {
-  id: number;
-  name: string;
-  title: string;
-  release_date: string;
-  poster_path: string;
-}
 
 const SearchPage: React.FC = () => {
   const [movies, setMovies] = useState<Movie[]>([]);

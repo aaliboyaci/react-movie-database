@@ -1,15 +1,8 @@
 import React, { useEffect } from 'react';
 import { baseUrl, apiKey } from '../Services/tmdbApiServices';
 import axios from 'axios';
+import Movie from "../Services/Movie"
 
-interface Movie {
-    id: number;
-    name: string;
-    title: string;
-    release_date: string;
-    poster_path: string;
-  }
-  
   const useRandomMovieFetch = (setRandomMovie: React.Dispatch<React.SetStateAction<Movie | null>>, dice :number) => {
     useEffect(() => {
       const fetchData = async () => {

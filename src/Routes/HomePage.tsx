@@ -37,7 +37,7 @@ const HomePage: React.FC = () => {
               </Link>
             </>
           ) : (
-            <p>error</p>
+            <p>Error occurred | Please try again</p>
           )}
         </div>
         <button className="random-btn" onClick={() => setDice(dice+1)}>
