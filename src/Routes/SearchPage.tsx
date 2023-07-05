@@ -3,7 +3,8 @@ import { Link, useLocation } from 'react-router-dom';
 import "./SearchPage.css";
 import useFetch from "../Hooks/useFetch";
 import Loading from "../Components/Loading"
-
+import searchFetch from "../Services/searchMovieFetch"
+import searchMovieFetch from '../Services/searchMovieFetch';
 
 interface Movie {
   id: number;
@@ -19,45 +20,17 @@ const SearchPage: React.FC = () => {
   const genreId = new URLSearchParams(location.search).get('genreid');
   const query = new URLSearchParams(location.search).get('query');
   const [page, setPage] = useState(1);
-  const apiKey = `6ef10486c5df46ca61884c8b042d53bd`;
-  const searchUrl = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${query}&page=${page}`;
-  const genreUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&with_genres=${genreId}&page=${page}`;
-
-
-  const fetchUrl: string = genreId ? genreUrl : searchUrl;
-
-  const { isLoading, data, error }: any = useFetch(fetchUrl);
-  console.log("data");
-  console.log(data);
-
-
-  useEffect(() => {
-    if (!isLoading && data !== null && data.length !== 0) {
-      setMovies(data);
-    }
-
-    else if (data == null || data.length == 0) { /* customHook sonrası bugı düzelten kod */
-      setMovies([]);
-    }
-  }, [isLoading, data]);
-
-
+  const isLoading = searchMovieFetch({ query, page, genreId }, setMovies);
 
   if (isLoading) {
-
-    return <Loading />;
+    return <Loading />
   }
 
-  if (error) {
-    return <p>Error: {error}</p>;
-  }
+  return (<>
 
-
-  return (
     <div id="search-container">
       <h2>Search Results</h2>
-      {movies.length === 0 ? (
-
+      {movies && movies.length === 0 ? (
         <div className="movie-item">No movies found.</div>
       ) : (
         <ul className="movie-list">
@@ -89,6 +62,7 @@ const SearchPage: React.FC = () => {
         : (<p></p>)
       }
     </div>
+  </>
   );
 };
 
