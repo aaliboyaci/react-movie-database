@@ -3,12 +3,16 @@ import { Link, Navigate } from 'react-router-dom';
 import './header.css';
 import { useNavigate } from 'react-router-dom';
 import searchimg from '../assets/search.png';
+import { useDispatch, useSelector } from 'react-redux';
+import { setGenreTitle} from '../store/actions';
 
 interface HeaderProps { }
 
 const Header: React.FC<HeaderProps> = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const genreName = useSelector((state: any) => state.genreTitle);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
@@ -16,6 +20,7 @@ const Header: React.FC<HeaderProps> = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    dispatch(setGenreTitle(""));
     navigate(`/search?query=${encodeURIComponent(searchTerm)}`);
     setSearchTerm('');
   };

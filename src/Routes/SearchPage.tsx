@@ -4,6 +4,7 @@ import "./SearchPage.css";
 import Loading from "../Components/Loading"
 import searchMovieFetch from '../Services/searchMovieFetch';
 import Movie from "../Services/Movie"
+import { useSelector } from 'react-redux';
 
 
 const SearchPage: React.FC = () => {
@@ -13,6 +14,8 @@ const SearchPage: React.FC = () => {
   const query = new URLSearchParams(location.search).get('query');
   const [page, setPage] = useState(1);
   const isLoading = searchMovieFetch({ query, page, genreId }, setMovies);
+  const genreName = useSelector((state: any) => state.genreTitle);
+
 
   if (isLoading) {
     return <Loading />
@@ -21,7 +24,7 @@ const SearchPage: React.FC = () => {
   return (<>
 
     <div id="search-container">
-      <h2>Search Results</h2>
+      {genreName ? (<h2>{genreName}</h2>):(<h2>Search Results for "{query}"</h2>)}
       {movies && movies.length === 0 ? (
         <div className="movie-item">No movies found.</div>
       ) : (
