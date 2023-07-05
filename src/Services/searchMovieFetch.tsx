@@ -17,7 +17,7 @@ const searchMovieFetch = ({ query, page, genreId }: searchProps, setMovies: Reac
     const fetchUrl: string = genreId ? genreUrl : searchUrl;
 
     const { isLoading, data, error }: any = useFetch(fetchUrl);
-    console.log(isLoading)
+
 
     useEffect(() => {
         if (!isLoading && data !== null && data.length !== 0) {
