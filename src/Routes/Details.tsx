@@ -6,6 +6,7 @@ import { addFavoriteMovie, removeFavoriteMovie } from '../store/actions';
 import Loading from '../Components/Loading';
 import detailsFetch from '../Services/detailsFetch';
 import { Movie, CrewMember, CastMember} from "../Services/detailsTypes"
+import { setGenreTitle} from '../store/actions';
 
 const Details = () => {
   const { showId } = useParams<{ showId: string |undefined }>();
@@ -31,7 +32,8 @@ const Details = () => {
     }
   };
 
-  const handleGenreClick = (genreId: number) => {
+  const handleGenreClick = (genreId: number, genreName: string) => {
+    dispatch(setGenreTitle(genreName));
     navigate(`/search?genreid=${genreId}`);
   };
 
@@ -47,7 +49,7 @@ const Details = () => {
         <div className="genres">
           <span className="genres-label"><b>Genre(s):</b></span>
           {movie.genres.map((genre, i) => (
-            <span key={i} className="genre" onClick={() => handleGenreClick(genre.id)}>{genre.name}</span>
+            <span key={i} className="genre" onClick={() => handleGenreClick(genre.id, genre.name)}>{genre.name}</span>
           ))}
         </div>
         <p className="release-date"><b>Release Date:</b> {movie.release_date}</p>
