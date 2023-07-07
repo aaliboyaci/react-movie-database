@@ -14,6 +14,7 @@ export interface PersonDetails {
     birthday: string
     place_of_birth: string;
     gender: number;
+    homepage: string;
 
 }
 

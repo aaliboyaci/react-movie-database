@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import Loading from '../Components/Loading';
 import personFetch, { PersonDetails } from '../Services/personFetch';
+import "./personPage.css";
 
 
 export interface popProps {
@@ -33,30 +34,36 @@ const PersonPage: React.FC = () => {
     { console.log(popMovies) }
 
     return (
-        <div>
-            <h1>{personDetails.name}</h1>
-            <img src={`https://image.tmdb.org/t/p/w500/${personDetails.profile_path}`} alt={personDetails.name} />
-            <p>Biography: {isExpanded ? personDetails.biography : `${personDetails.biography.slice(0, 200)}...`}<br></br>
-                <button onClick={() => setIsExpanded(!isExpanded)}>
-                    {isExpanded ? "Hide" : "Show more"}
-                </button></p>
-            <p>Birthday: {personDetails.birthday}</p>
-            <p>Gender : {(personDetails.gender === 1) ? (<>Woman</>) : (<>Man</>)}</p>
-            <p>Place of Birth: {personDetails.place_of_birth}</p>
+        <div className="containerPP">
+            <h1 className="titlePP">{personDetails.name}</h1>
+            <img className="imagePP" src={`https://image.tmdb.org/t/p/w500/${personDetails.profile_path}`} alt={personDetails.name} />
+            <p className="infoPP"> <b>Known for:</b> {personDetails.known_for_department}</p>
+            {personDetails.birthday && <p className="infoPP" ><b>Birthday:</b> {personDetails.birthday}</p>}
+            <p className="infoPP" ><b>Gender :</b> {(personDetails.gender === 1) ? (<>Woman</>) : (<>Man</>)}</p>
+            {personDetails.place_of_birth && <p className="infoPP" ><b>Place of Birth: </b>{personDetails.place_of_birth}</p>}
+            {personDetails.homepage && <p className='infoPP'><a href={personDetails.homepage} target="_blank">Website: {personDetails.homepage}</a> </p>}
+            <hr></hr>
             <h2>Popular Movies:</h2>
-            {(popMovies == null || popMovies.length === 0) ? (
+            {(popMovies == null || popMovies.length == 0) ? (
                 <p><Loading /></p>
             ) : (
                 popMovies.map((movie: any) => (
                     <div
                         key={movie.id}
                         onClick={() => handleGenreClick(movie.id)} >
-                        <div >Title movie: {movie.title}</div>
+                        <div className="moviePP" >{movie.title}</div>
 
                     </div>
                 ))
             )}
+            <br></br>
+            <hr></hr>
 
+            {personDetails.biography && <div className="bioPP">
+                <b>Biography:</b> {isExpanded ? personDetails.biography : `${personDetails.biography.slice(0, 200)}...`}<br></br>
+                <button onClick={() => setIsExpanded(!isExpanded)}>
+                    {isExpanded ? "Hide" : "Show more"}
+                </button></div>}
         </div>
     );
 };
