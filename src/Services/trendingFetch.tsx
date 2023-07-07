@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import useFetch from "../Hooks/useFetch";
-import { baseUrl, apiKey } from '../Services/tmdbApiServices';
+import { baseUrl, apiKey, trendUrl } from '../Services/tmdbApiServices';
 
 
 export interface Trend {
@@ -12,8 +12,8 @@ export interface Trend {
 
 export const trendingFetch = (setTrendingMovies: React.Dispatch<React.SetStateAction<Trend[]>>) => {
 
-    const url = `${baseUrl}trending/movie/week?api_key=${apiKey}`;
-    const { isLoading, data, error }: any = useFetch(url);
+    
+    const { isLoading, data, error }: any = useFetch(trendUrl);
 
     useEffect(() => {
         if (!isLoading && data !== null && data.length !== 0) {
