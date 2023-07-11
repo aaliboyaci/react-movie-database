@@ -77,7 +77,7 @@ const Details = () => {
               <li key={person.id}>
                 <Link to={`/PersonPage/${person.id}`} className="movie-link"><p>{person.name}</p>
                 </Link>
-
+</li>
           <h3 className="cast-title">Cast:</h3>
           {director && <p><b>Director:</b> {director.name}</p>}
           <p><b>Main Cast:</b></p>
