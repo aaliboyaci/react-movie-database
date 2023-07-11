@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams,useNavigate, Link } from 'react-router-dom';
+import { useParams,useNavigate } from 'react-router-dom';
 import './Details.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { addFavoriteMovie, removeFavoriteMovie } from '../store/actions';
@@ -66,6 +67,7 @@ const Details = () => {
         </button>
         <hr></hr>
         <div className="movie-cast">
+
         
           <h3 className="cast-title">Cast:</h3>
           {director && <p><b>Director:</b> <Link to={`/PersonPage/${director.id}`} className="movie-link">{director.name}</Link></p>}
@@ -76,11 +78,19 @@ const Details = () => {
                 <Link to={`/PersonPage/${person.id}`} className="movie-link"><p>{person.name}</p>
                 </Link>
               </li>
+
+          <h3 className="cast-title">Cast:</h3>
+          {director && <p><b>Director:</b> {director.name}</p>}
+          <p><b>Main Cast:</b></p>
+          <ul className="cast-list">
+            {credits && mainCast?.map((person: CastMember) => (
+              <li key={person.id}><p>{person.name}</p></li>
+
             ))}
           </ul>
           <hr></hr>
           <p className="budget"><b>Budget: </b>$ {movie.budget}</p>
-          
+
         </div>
       </div>
     </div>
