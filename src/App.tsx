@@ -12,8 +12,6 @@ import ErrorPage from "./Routes/ErrorPage";
 import SearchPage from "./Routes/SearchPage";
 import './App.css';
 import store from './store';
-import PersonPage from './Routes/PersonPage';
-
 
 function App() {
 
@@ -28,7 +26,6 @@ function App() {
             <Route path="/GenresPage" element={<GenresPage />} />
             <Route path="/WatchList" element={<WatchList />} />
             <Route path="/Details/:showId" element={<Details />} />
-            <Route path="/PersonPage/:personId" element={<PersonPage />} />
             <Route path="/Search" element={<SearchPage />} />
             <Route path="/*" element={<ErrorPage />} />
           </Routes>
