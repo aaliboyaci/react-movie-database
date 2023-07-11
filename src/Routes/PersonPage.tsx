@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import Loading from '../Components/Loading';
 import personFetch, { PersonDetails } from '../Services/personFetch';
 import "./personPage.css";
-
+/*11temmuz2023*/
 
 export interface popProps {
     length: number;
