@@ -3,6 +3,7 @@ export interface CrewMember {
     department: string;
     name: string;
     id:number;
+
   }
   
   export interface CastMember {
