@@ -46,8 +46,8 @@ const Details = () => {
           src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
           alt={movie.original_title}
         />
+        <span className="genres-label"><b>Genre(s):</b></span>
         <div className="genres">
-          <span className="genres-label"><b>Genre(s):</b></span>
           {movie.genres.map((genre, i) => (
             <span key={i} className="genre" onClick={() => handleGenreClick(genre.id, genre.name)}>{genre.name}</span>
           ))}
@@ -64,17 +64,17 @@ const Details = () => {
         <button className={`${isMovieFavorite ? 'favorited' : 'notfavorited'}`} onClick={handleFavoriteClick}>
           {isMovieFavorite ? 'Remove from Favorites' : 'Add to Favorites'}
         </button>
-        <hr></hr>
+        <hr className='line'></hr>
         <div className="movie-cast">
 
         
           <h3 className="cast-title">Cast:</h3>
-          {director && <p><b>Director:</b> <Link to={`/PersonPage/${director.id}`} className="movie-link">{director.name}</Link></p>}
+          {director && <><p><b>Director:</b></p> <Link to={`/PersonPage/${director.id}`} className="movie-link">{director.name}</Link></>}
           <p><b>Main Cast:</b></p>
           <ul className="cast-list">
             {credits && mainCast?.map((person: CastMember) => (
               <li key={person.id}>
-                <Link to={`/PersonPage/${person.id}`} className="movie-link"><p>{person.name}</p>
+                <Link to={`/PersonPage/${person.id}`} className="movie-link">{person.name}
                 </Link>
               </li>
 
@@ -82,7 +82,8 @@ const Details = () => {
 
             ))}
           </ul>
-          <hr></hr>
+          <br></br>
+          <hr className='line'></hr>
           <p className="budget"><b>Budget: </b>$ {movie.budget}</p>
 
         </div>

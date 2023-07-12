@@ -28,22 +28,26 @@
   margin-bottom: 10px;
   display: flex;
   user-select: none;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .genres-label {
   font-weight: bold;
-  margin-right: 5px;
+  margin-bottom: 10px;
 
 }
 
 .genre {
   display: inline-block;
   padding: 4px 8px;
-  margin-right: 6px;
+  margin-right: 3px;
+  margin-left: 3px;
   margin-bottom: 6px;
   background-color: #08591b;
   border-radius: 3px;
-  font-size: 12px;
+  font-size: 13px;
+  cursor: pointer;
 }
 
 .genre:hover {
@@ -70,7 +74,7 @@
 }
 
 .budget {
-  margin-bottom: 10px;
+  font-size: 13px;
 }
 
 .notfavorited {
@@ -98,4 +102,8 @@
 
 .favorited:hover {
   background-color: red;
+}
+
+.line{
+  width: 300px;
 }
