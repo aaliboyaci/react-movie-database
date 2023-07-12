@@ -6,5 +6,7 @@ export const baseUrl: string = `https://api.themoviedb.org/3/`;
 //spesifik urller burada
 export const genreListUrl = `${baseUrl}genre/movie/list?api_key=${apiKey}`;
 
+export const trendUrl = `${baseUrl}trending/movie/week?api_key=${apiKey}`;
+
 
 

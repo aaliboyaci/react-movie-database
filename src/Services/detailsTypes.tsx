@@ -2,6 +2,8 @@ export interface CrewMember {
     job: string;
     department: string;
     name: string;
+    id:number;
+
   }
   
   export interface CastMember {
