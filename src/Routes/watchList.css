@@ -3,7 +3,7 @@
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 15px;
   justify-content: space-between;
-  align-items: center; 
+  align-items: stretch; 
 }
 
 
