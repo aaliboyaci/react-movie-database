@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './header.css';
 import { useNavigate } from 'react-router-dom';
-import searchimg from '../assets/search.png';
+import searchImage from '../assets/search.png';
 import { useDispatch } from 'react-redux';
 import { setGenreTitle} from '../store/actions';
-import { HOME, TRENDING, GENRESPAGE, WATCHLIST} from  "../Routes/routes"
+import { HOME, TRENDING, GENRESPAGE, WATCHLIST, SEARCBYHQUERY} from  "../Routes/routes"
 
 interface HeaderProps { }
 
@@ -21,7 +21,7 @@ const Header: React.FC<HeaderProps> = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     dispatch(setGenreTitle(""));
-    navigate(`/search?query=${encodeURIComponent(searchTerm)}`);
+    navigate(`${SEARCBYHQUERY}${encodeURIComponent(searchTerm)}`);
     setSearchTerm('');
   };
 
@@ -31,7 +31,7 @@ const Header: React.FC<HeaderProps> = () => {
       <form onSubmit={handleSubmit}>
         <input id="searchInput" type="text" value={searchTerm} onChange={handleInputChange} placeholder="Search for a movie" />
         <button className="searchbtn" type="submit"> Search
-          <img src={searchimg} alt="search" className="searchimg" />
+          <img src={searchImage} alt="search" className="searchimg" />
         </button>
       </form>
 
