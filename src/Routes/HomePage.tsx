@@ -3,6 +3,8 @@ import './HomePage.css';
 import { Link } from 'react-router-dom';
 import diceImg from '../assets/dice.png';
 import useRandomMovieFetch from '../Services/randomMovieFetch';
+import { posterBaseUrl } from '../Services/tmdbApiServices';
+import { DETAILS } from './routes';
 
 interface Movie {
   id: number;
@@ -27,9 +29,9 @@ const HomePage: React.FC = () => {
         <div className="content">
           {randomMovie ? (
             <>
-              <Link to={`/Details/${randomMovie.id}`} className="movie-link">
+              <Link to={`${DETAILS}${randomMovie.id}`} className="movie-link">
                 <img
-                  src={`https://image.tmdb.org/t/p/w500/${randomMovie.poster_path}`}
+                  src={`${posterBaseUrl}${randomMovie.poster_path}`}
                   alt="Random Movie"
                 />
                 <h3 className="random-title">{randomMovie.title}</h3>

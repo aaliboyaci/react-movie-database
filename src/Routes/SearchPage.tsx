@@ -1,10 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import "./SearchPage.css";
 import Loading from "../Components/Loading"
 import searchMovieFetch from '../Services/searchMovieFetch';
 import Movie from "../Services/Movie"
 import { useSelector } from 'react-redux';
+import { DETAILS} from  "../Routes/routes"
+import { posterBaseUrl } from '../Services/tmdbApiServices';
+
 
 
 const SearchPage: React.FC = () => {
@@ -31,9 +34,9 @@ const SearchPage: React.FC = () => {
         <ul className="movie-list">
           {movies.map((movie) => (
             <li key={movie.id} className="movie-item">
-              <Link to={`/Details/${movie.id}`} className="movie-link">
+              <Link to={`${DETAILS}${movie.id}`} className="movie-link">
                 <img
-                  src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+                  src={`${posterBaseUrl}${movie.poster_path}`}
                   alt={movie.title}
                   className="movie-poster"
                   onError={(e: React.SyntheticEvent<HTMLImageElement>) => {

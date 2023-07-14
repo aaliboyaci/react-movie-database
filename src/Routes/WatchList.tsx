@@ -4,6 +4,8 @@ import './watchList.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { removeFavoriteMovie } from '../store/actions';
 import { Link } from 'react-router-dom';
+import { posterBaseUrl } from '../Services/tmdbApiServices';
+import { DETAILS } from './routes';
 
 interface Movie {
   id: number;
@@ -38,10 +40,10 @@ const WatchList: React.FC = () => {
           <>
             {currentMovies.map((movie: Movie) => (
               <div key={movie.id} className="fav-movie">
-                <Link to={`/Details/${movie.id}`} className="fav-link">
+                <Link to={`${DETAILS}${movie.id}`} className="fav-link">
                   <div className="fav-top">
                     <div className="fav-image">
-                      <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt={movie.title} />
+                      <img src={`${posterBaseUrl}${movie.poster_path}`} alt={movie.title} />
                     </div>
                     <div className="fav-year">
                       <b>{movie.release_date.slice(0, 4)}</b>
@@ -49,7 +51,7 @@ const WatchList: React.FC = () => {
                   </div>
                 </Link>
                 <div className="fav-bot">
-                  <Link to={`/Details/${movie.id}`} className="fav-link">
+                  <Link to={`${DETAILS}${movie.id}`} className="fav-link">
                     <div className="fav-title">{movie.title}</div>
                     <div className="fav-des">{movie.overview.slice(0, 95)}...</div>
                   </Link>
