@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { baseUrl, apiKey } from '../Services/tmdbApiServices';
+import { baseUrl, apiKey } from './tmdbApiServices';
 import { useSelector, useDispatch } from 'react-redux';
 import { addFavoriteMovie, removeFavoriteMovie } from '../store/actions';
-import { Movie, CrewMember, CastMember } from "../Services/detailsTypes"
+import { Movie, CrewMember, CastMember } from "./detailsTypes"
 import { Reducer } from 'redux';
 import useFetch from '../Hooks/useFetch';
 
@@ -15,7 +15,7 @@ interface detailsProps {
     dispatch: Reducer;
 }
 
-const detailsFetch = ({ showId, setMovie, setMainCast, setDirector, setCredits, dispatch }: detailsProps) => {
+const useDetailsFetch = ({ showId, setMovie, setMainCast, setDirector, setCredits, dispatch }: detailsProps) => {
     const [isLoading, setIsLoading] = useState(true)
     const castUrl = `${baseUrl}movie/${showId}/credits?api_key=${apiKey}`;
     const showUrl = `${baseUrl}movie/${showId}?api_key=${apiKey}`;
@@ -48,4 +48,4 @@ const detailsFetch = ({ showId, setMovie, setMainCast, setDirector, setCredits, 
     
 }
 
-export default detailsFetch;
+export default useDetailsFetch;

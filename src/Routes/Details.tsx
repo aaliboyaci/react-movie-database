@@ -4,7 +4,7 @@ import './Details.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { addFavoriteMovie, removeFavoriteMovie } from '../store/actions';
 import Loading from '../Components/Loading';
-import detailsFetch from '../Services/detailsFetch';
+import useDetailsFetch from '../Services/useDetailsFetch';
 import { Movie, CrewMember, CastMember } from "../Services/detailsTypes"
 import { setGenreTitle } from '../store/actions';
 import { PERSON, SEARCHBYID } from "./routes"
@@ -20,7 +20,7 @@ const Details = () => {
   const favoriteMovies = useSelector((state: any) => state.favoriteMovies);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const isLoading = detailsFetch({ showId, setMovie, setMainCast, setDirector, setCredits, dispatch })
+  const isLoading = useDetailsFetch({ showId, setMovie, setMainCast, setDirector, setCredits, dispatch })
 
   if (!movie) { return (<Loading />); }
   if (isLoading) { return (<Loading />); }
