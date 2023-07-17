@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import '../Routes/HomePage.css';
+import "./randomMovie.css";
 import { Link } from 'react-router-dom';
 import diceImg from '../assets/dice.png';
 import useRandomMovieFetch from '../Services/randomMovieFetch';
@@ -39,7 +40,7 @@ const RandomMovie: React.FC = () => {
                 </Link>
               </>
             ) : (
-              <p>Error occurred | Please try again</p>
+              <p>Error occurred | Please refresh page</p>
             )}
           </div>
           <button className="random-btn" onClick={() => setDice(dice + 1)}>

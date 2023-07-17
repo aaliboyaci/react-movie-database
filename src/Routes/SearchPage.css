@@ -30,10 +30,10 @@ li {
   display: flex;
   flex-wrap: nowrap;
   justify-content: center;
+  align-items: stretch;
 }
 
 .movie-link {
-  display: block;
   text-decoration: none;
   color: inherit;
   transition: transform 0.2s;
