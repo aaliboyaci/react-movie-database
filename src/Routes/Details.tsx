@@ -9,6 +9,7 @@ import { Movie, CrewMember, CastMember } from "../Services/detailsTypes"
 import { setGenreTitle } from '../store/actions';
 import { PERSON, SEARCHBYID } from "./routes"
 import { posterBaseUrl } from '../Services/tmdbApiServices';
+import MovieTrailers from '../Services/movieTrailer';
 
 
 const Details = () => {
@@ -60,6 +61,7 @@ const Details = () => {
           <b>Overview:</b>
           <div className="movie-text">{movie.overview}</div>
         </div>
+        <MovieTrailers movieId={movie.id} />
         <p style={{ color: movie.status === 'Released' ? '#04d134' : 'red' }}>
           <b>Status: </b>{movie.status}</p>
         <p className="vote-average"><b>Vote Average: </b>{movie.vote_average}</p>
@@ -79,7 +81,6 @@ const Details = () => {
                 <Link to={`${PERSON}${person.id}`} className="movie-link">{person.name}
                 </Link>
               </li>
-
             ))}
           </ul>
           <br></br>
