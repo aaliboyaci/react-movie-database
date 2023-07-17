@@ -7,15 +7,15 @@ import { Genre } from '../Routes/GenresPage';
 
 export const genreListFetch = (setGenres: React.Dispatch<React.SetStateAction<Genre[]>>) => {
 
-    const { isLoading, data, error }:any = useFetch(genreListUrl);
+  const { isLoading, data, error }: any = useFetch(genreListUrl);
 
-    useEffect(() => {
-      if (data !== null && data.length > 1) {
-        setGenres(data);
-      }
-    }, [isLoading, data]);
+  useEffect(() => {
+    if (data !== null && data.length > 1) {
+      setGenres(data);
+    }
+  }, [isLoading, data]);
 
   return (
-    {isLoading, error}
+    { isLoading, error }
   )
 }

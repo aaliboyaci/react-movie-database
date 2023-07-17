@@ -5,8 +5,6 @@ import RandomMovie from '../Components/RandomMovie';
 
 const HomePage: React.FC = () => {
   
-
-
   return (
     <div className="home-container">
       <RandomMovie />

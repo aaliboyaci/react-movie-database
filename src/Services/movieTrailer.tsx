@@ -9,11 +9,9 @@ interface MovieTrailer {
     site: string;
     type: string;
 }
-
 interface MovieTrailersResponse {
     results: MovieTrailer[];
 }
-
 interface MovieProps {
     movieId: number;
 }
@@ -32,7 +30,6 @@ const MovieTrailers: React.FC<MovieProps> = ({ movieId }) => {
                 console.error('Error fetching movie trailers:', error);
             }
         };
-
         fetchTrailers();
     }, [movieId, apiKey]);
 
@@ -41,20 +38,16 @@ const MovieTrailers: React.FC<MovieProps> = ({ movieId }) => {
             {trailers.length > 0 ? (
                 <div>
                     <h2>Trailers</h2>
-                    <ul>
-                        {trailers.map((trailer) => (
-                            <li key={trailer.id}>
-                                <iframe
-                                    style={{ border: "none" }}
-                                    width="560"
-                                    height="315"
-                                    src={`https://www.youtube.com/embed/${trailer.key}`}
-                                    title={trailer.name}
-                                    allowFullScreen
-                                ></iframe>
-
-                            </li>
-                        ))}
+                    <ul>{trailers.map((trailer) => (
+                        <li key={trailer.id}>
+                            <iframe
+                                style={{ border: "none" }}
+                                width="560"
+                                height="315"
+                                src={`https://www.youtube.com/embed/${trailer.key}`}
+                                title={trailer.name}
+                                allowFullScreen></iframe>
+                        </li>))}
                     </ul>
                 </div>
             ) : (

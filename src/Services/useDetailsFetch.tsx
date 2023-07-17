@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { baseUrl, apiKey } from './tmdbApiServices';
-import { useSelector, useDispatch } from 'react-redux';
-import { addFavoriteMovie, removeFavoriteMovie } from '../store/actions';
 import { Movie, CrewMember, CastMember } from "./detailsTypes"
 import { Reducer } from 'redux';
-import useFetch from '../Hooks/useFetch';
+
 
 interface detailsProps {
     showId: string | undefined;
-    setMovie: React.Dispatch<React.SetStateAction<Movie| null>>;
+    setMovie: React.Dispatch<React.SetStateAction<Movie | null>>;
     setMainCast: React.Dispatch<React.SetStateAction<CastMember[] | null>>;
     setDirector: React.Dispatch<React.SetStateAction<CrewMember | null>>;
     setCredits: React.Dispatch<React.SetStateAction<CastMember | null>>;
@@ -28,7 +26,7 @@ const useDetailsFetch = ({ showId, setMovie, setMainCast, setDirector, setCredit
                 const movieResponse = await fetch(showUrl);
                 const movieData = await movieResponse.json();
                 setMovie(movieData);
-                
+
                 const castResponse = await fetch(castUrl);
                 const castData = await castResponse.json();
                 setCredits(castData);
@@ -44,8 +42,8 @@ const useDetailsFetch = ({ showId, setMovie, setMainCast, setDirector, setCredit
     }, [showId, dispatch]);
 
 
-    return  (isLoading)
-    
+    return (isLoading)
+
 }
 
 export default useDetailsFetch;
