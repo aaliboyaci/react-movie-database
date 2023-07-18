@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import "./SearchPage.css";
+import "./Search/SearchPage.css";
 import Loading from "../Components/Loading";
 import { Trend, trendingFetch } from '../Services/trendingFetch';
+import { posterBaseUrl } from '../Services/tmdbApiServices';
+import { DETAILS } from './routes';
 
 
 const Trending: React.FC = () => {
   const [trendingMovies, setTrendingMovies] = useState<Trend[]>([]);
-
   const { isLoading, error } = trendingFetch(setTrendingMovies)
 
   if (isLoading) { return <Loading />; }
@@ -18,12 +19,13 @@ const Trending: React.FC = () => {
       <h2>Trending Movies</h2>
       {trendingMovies.length === 0 ? (
         <p>No movies found.</p>) : (
+          <><p><i>Trending movies in last week</i></p>
         <ul className="movie-list">
           {trendingMovies.map((movie) => (
             <li key={movie.id} className="movie-item">
-              <Link to={`/Details/${movie.id}`} className="movie-link">
+              <Link to={`${DETAILS}${movie.id}`} className="movie-link">
                 <img
-                  src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+                  src={`${posterBaseUrl}${movie.poster_path}`}
                   alt={movie.title}
                   className="movie-poster"
                   onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
@@ -38,6 +40,7 @@ const Trending: React.FC = () => {
             </li>
           ))}
         </ul>
+        </>
       )}
     </div>
   );

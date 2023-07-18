@@ -5,6 +5,7 @@ import Loading from "../Components/Loading"
 import { genreListFetch } from '../Services/genreListFetch';
 import { useDispatch, useSelector } from 'react-redux';
 import { setGenreTitle} from '../store/actions';
+import { SEARCHBYID } from './routes';
 
 export interface Genre {
   id: number;
@@ -24,7 +25,7 @@ export default function GenresPage() {
 
   const handleGenreClick = (genreId: number, genreName: string) => {
     dispatch(setGenreTitle(genreName));
-    navigate(`/search?genreid=${genreId}`);
+    navigate(`${SEARCHBYID}${genreId}`);
   };
   
 

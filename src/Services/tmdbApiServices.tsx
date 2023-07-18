@@ -9,4 +9,9 @@ export const genreListUrl = `${baseUrl}genre/movie/list?api_key=${apiKey}`;
 export const trendUrl = `${baseUrl}trending/movie/week?api_key=${apiKey}`;
 
 
+//movie poster img src
+export const posterBaseUrl = `https://image.tmdb.org/t/p/w500/`
+
+
+
 

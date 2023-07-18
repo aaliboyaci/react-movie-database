@@ -54,7 +54,7 @@ const personFetch = (setPersonDetails: React.Dispatch<React.SetStateAction<Perso
             }
         }
 
-    }, [isLoading2, data2]);
+    }, [isLoading2, data2, data1, isLoading1]);
     /* api responseları karışık olduğu için burada zorunlu olarak array işlemleri yapmam gerekti  */
 
 

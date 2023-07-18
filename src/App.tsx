@@ -9,10 +9,11 @@ import GenresPage from './Routes/GenresPage';
 import WatchList from './Routes/WatchList';
 import Details from "./Routes/Details";
 import ErrorPage from "./Routes/ErrorPage";
-import SearchPage from "./Routes/SearchPage";
+import SearchPage from "./Routes/Search/SearchPage";
 import './App.css';
 import store from './store';
 import PersonPage from './Routes/PersonPage';
+import { HOME, TRENDING, GENRESPAGE, WATCHLIST, DETAILSPAGE, PERSONPAGE, SEARCHPAGE, ERROR } from  "./Routes/routes"
 
 
 function App() {
@@ -20,21 +21,19 @@ function App() {
   return (
     <div id="container">
       <Provider store={store}>
-        <Router basename={process.env.NODE_ENV === 'development' ? '/' : '/react-movie-database/'}>
           <Header />
           <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/Trending" element={<Trending />} />
-            <Route path="/GenresPage" element={<GenresPage />} />
-            <Route path="/WatchList" element={<WatchList />} />
-            <Route path="/Details/:showId" element={<Details />} />
-            <Route path="/PersonPage/:personId" element={<PersonPage />} />
-            <Route path="/Search" element={<SearchPage />} />
-            <Route path="/*" element={<ErrorPage />} />
+            <Route path={HOME} element={<HomePage />} />
+            <Route path={TRENDING} element={<Trending />} />
+            <Route path={GENRESPAGE} element={<GenresPage />} />
+            <Route path={WATCHLIST} element={<WatchList />} />
+            <Route path={DETAILSPAGE} element={<Details />} />
+            <Route path={PERSONPAGE} element={<PersonPage />} />
+            <Route path={SEARCHPAGE} element={<SearchPage />} />
+            <Route path={ERROR} element={<ErrorPage />} />
           </Routes>
           <br></br>
           <Footer />
-        </Router>
       </Provider>
     </div>
   );

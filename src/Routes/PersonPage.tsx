@@ -3,6 +3,8 @@ import { useNavigate, useParams } from 'react-router-dom';
 import Loading from '../Components/Loading';
 import personFetch, { PersonDetails } from '../Services/personFetch';
 import "./personPage.css";
+import { posterBaseUrl } from '../Services/tmdbApiServices';
+import { DETAILS } from './routes';
 
 
 export interface popProps {
@@ -10,16 +12,14 @@ export interface popProps {
     map: any;
     id: number;
     title: string;
-
 }
+
 const PersonPage: React.FC = () => {
     const { personId } = useParams<{ personId: string }>();
     const [personDetails, setPersonDetails] = useState<PersonDetails | null>(null);
     const [popMovies, setPopMovies] = useState<popProps | null>(null);
     const { isLoading1, isLoading2 } = personFetch(setPersonDetails, personId, setPopMovies);
     const [isExpanded, setIsExpanded] = useState(false);
-
-
     const navigate = useNavigate();
 
     console.log(personDetails)
@@ -29,14 +29,17 @@ const PersonPage: React.FC = () => {
 
     const handleGenreClick = (movieID: number) => {
 
-        navigate(`/Details/${movieID}`);
+        navigate(`${DETAILS}${movieID}`);
     };
     { console.log(popMovies) }
 
     return (
         <div className="containerPP">
             <h1 className="titlePP">{personDetails.name}</h1>
-            <img className="imagePP" src={`https://image.tmdb.org/t/p/w500/${personDetails.profile_path}`} alt={personDetails.name} />
+            <img className="imagePP" src={`${posterBaseUrl}${personDetails.profile_path}`} alt={personDetails.name}
+            onError={(e: React.SyntheticEvent<HTMLImageElement>) => {
+                e.currentTarget.src = 'src/assets/no-avatar.png';
+              }} />
             <p className="infoPP"> <b>Known for:</b> {personDetails.known_for_department}</p>
             {personDetails.birthday && <p className="infoPP" ><b>Birthday:</b> {personDetails.birthday}</p>}
             <p className="infoPP" ><b>Gender :</b> {(personDetails.gender === 1) ? (<>Woman</>) : (<>Man</>)}</p>
@@ -44,15 +47,14 @@ const PersonPage: React.FC = () => {
             {personDetails.homepage && <p className='infoPP'><a href={personDetails.homepage} target="_blank">Website: {personDetails.homepage}</a> </p>}
             <hr></hr>
             <h2>Popular Movies:</h2>
-            {(popMovies == null || popMovies.length == 0) ? (
-                <p><Loading /></p>
+            {(popMovies == null || popMovies.length === 0) ? (
+                <><Loading /></>
             ) : (
                 popMovies.map((movie: any) => (
                     <div
                         key={movie.id}
                         onClick={() => handleGenreClick(movie.id)} >
                         <div className="moviePP" >{movie.title}</div>
-
                     </div>
                 ))
             )}

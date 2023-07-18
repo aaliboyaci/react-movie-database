@@ -1,26 +1,30 @@
-import React, { useEffect, useState } from 'react';
-import { useParams,useNavigate, Link } from 'react-router-dom';
+import { useState } from 'react';
+import { useParams, useNavigate, Link } from 'react-router-dom';
 import './Details.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { addFavoriteMovie, removeFavoriteMovie } from '../store/actions';
 import Loading from '../Components/Loading';
-import detailsFetch from '../Services/detailsFetch';
-import { Movie, CrewMember, CastMember} from "../Services/detailsTypes"
-import { setGenreTitle} from '../store/actions';
+import useDetailsFetch from '../Services/useDetailsFetch';
+import { Movie, CrewMember, CastMember } from "../Services/detailsTypes"
+import { setGenreTitle } from '../store/actions';
+import { PERSON, SEARCHBYID } from "./routes"
+import { posterBaseUrl } from '../Services/tmdbApiServices';
+import MovieTrailers from '../Services/movieTrailer';
+
 
 const Details = () => {
-  const { showId } = useParams<{ showId: string |undefined }>();
-  const [movie, setMovie] = useState<Movie| null>(null);
+  const { showId } = useParams<{ showId: string | undefined }>();
+  const [movie, setMovie] = useState<Movie | null>(null);
   const [credits, setCredits] = useState<any | null>(null);
   const [director, setDirector] = useState<CrewMember | null>(null);
   const [mainCast, setMainCast] = useState<CastMember[] | null>(null);
   const favoriteMovies = useSelector((state: any) => state.favoriteMovies);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const isLoading = detailsFetch({showId, setMovie, setMainCast, setDirector, setCredits, dispatch})
+  const isLoading = useDetailsFetch({ showId, setMovie, setMainCast, setDirector, setCredits, dispatch })
 
-  if (!movie) {return (<Loading/>);}
-  if (isLoading) {return (<Loading/>);}
+  if (!movie) { return (<Loading />); }
+  if (isLoading) { return (<Loading />); }
 
   const isMovieFavorite = favoriteMovies.some((favMovie: Movie) => favMovie.id === movie.id);
 
@@ -34,7 +38,7 @@ const Details = () => {
 
   const handleGenreClick = (genreId: number, genreName: string) => {
     dispatch(setGenreTitle(genreName));
-    navigate(`/search?genreid=${genreId}`);
+    navigate(`${SEARCHBYID}${genreId}`);
   };
 
   return (
@@ -43,9 +47,15 @@ const Details = () => {
         <h2 className="movie-title-big">{movie.original_title}</h2>
         <img
           className="moviePoster"
-          src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+          src={`${posterBaseUrl}${movie.poster_path}`}
           alt={movie.original_title}
+          onError={(e: React.SyntheticEvent<HTMLImageElement>) => {
+            e.currentTarget.src = 'src/assets/404-error.png';
+          }}
         />
+        <button className={`${isMovieFavorite ? 'favorited' : 'notfavorited'}`} onClick={handleFavoriteClick}>
+          {isMovieFavorite ? 'Remove from Favorites' : 'Add to Favorites'}
+        </button>
         <span className="genres-label"><b>Genre(s):</b></span>
         <div className="genres">
           {movie.genres.map((genre, i) => (
@@ -57,8 +67,9 @@ const Details = () => {
           <b>Overview:</b>
           <div className="movie-text">{movie.overview}</div>
         </div>
+        <MovieTrailers movieId={movie.id} />
         <p style={{ color: movie.status === 'Released' ? '#04d134' : 'red' }}>
-        <b>Status: </b>{movie.status}</p>
+          <b>Status: </b>{movie.status}</p>
         <p className="vote-average"><b>Vote Average: </b>{movie.vote_average}</p>
         <p className="vote-count"><b>Vote Count: </b>{movie.vote_count}</p>
         <button className={`${isMovieFavorite ? 'favorited' : 'notfavorited'}`} onClick={handleFavoriteClick}>
@@ -67,19 +78,15 @@ const Details = () => {
         <hr className='line'></hr>
         <div className="movie-cast">
 
-        
           <h3 className="cast-title">Cast:</h3>
-          {director && <><p><b>Director:</b></p> <Link to={`/PersonPage/${director.id}`} className="movie-link">{director.name}</Link></>}
+          {director && <><p><b>Director:</b></p> <Link to={`${PERSON}${director.id}`} className="movie-link">{director.name}</Link></>}
           <p><b>Main Cast:</b></p>
           <ul className="cast-list">
             {credits && mainCast?.map((person: CastMember) => (
               <li key={person.id}>
-                <Link to={`/PersonPage/${person.id}`} className="movie-link">{person.name}
+                <Link to={`${PERSON}${person.id}`} className="movie-link">{person.name}
                 </Link>
               </li>
-
-    
-
             ))}
           </ul>
           <br></br>
