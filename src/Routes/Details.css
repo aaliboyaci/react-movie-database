@@ -80,7 +80,7 @@
 .notfavorited {
   color: #04d134;
   background-color: #08591b;
-  border-radius: 10px;
+  border-radius: 5px;
   padding: 10px;
   margin-bottom: 8px;
   font-size: 12px;
@@ -94,7 +94,7 @@
 .favorited {
   background-color: rgb(125, 30, 30);
   color: white;
-  border-radius: 10px;
+  border-radius: 5px;
   padding: 10px;
   margin-bottom: 8px;
   font-size: 12px;

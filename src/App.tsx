@@ -9,7 +9,7 @@ import GenresPage from './Routes/GenresPage';
 import WatchList from './Routes/WatchList';
 import Details from "./Routes/Details";
 import ErrorPage from "./Routes/ErrorPage";
-import SearchPage from "./Routes/SearchPage";
+import SearchPage from "./Routes/Search/SearchPage";
 import './App.css';
 import store from './store';
 import PersonPage from './Routes/PersonPage';
@@ -21,7 +21,6 @@ function App() {
   return (
     <div id="container">
       <Provider store={store}>
-        <Router basename={process.env.NODE_ENV === 'development' ? '/' : '/react-movie-database/'}>
           <Header />
           <Routes>
             <Route path={HOME} element={<HomePage />} />
@@ -35,7 +34,6 @@ function App() {
           </Routes>
           <br></br>
           <Footer />
-        </Router>
       </Provider>
     </div>
   );

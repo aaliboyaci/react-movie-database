@@ -36,7 +36,10 @@ const PersonPage: React.FC = () => {
     return (
         <div className="containerPP">
             <h1 className="titlePP">{personDetails.name}</h1>
-            <img className="imagePP" src={`${posterBaseUrl}${personDetails.profile_path}`} alt={personDetails.name} />
+            <img className="imagePP" src={`${posterBaseUrl}${personDetails.profile_path}`} alt={personDetails.name}
+            onError={(e: React.SyntheticEvent<HTMLImageElement>) => {
+                e.currentTarget.src = 'src/assets/no-avatar.png';
+              }} />
             <p className="infoPP"> <b>Known for:</b> {personDetails.known_for_department}</p>
             {personDetails.birthday && <p className="infoPP" ><b>Birthday:</b> {personDetails.birthday}</p>}
             <p className="infoPP" ><b>Gender :</b> {(personDetails.gender === 1) ? (<>Woman</>) : (<>Man</>)}</p>

@@ -49,7 +49,13 @@ const Details = () => {
           className="moviePoster"
           src={`${posterBaseUrl}${movie.poster_path}`}
           alt={movie.original_title}
+          onError={(e: React.SyntheticEvent<HTMLImageElement>) => {
+            e.currentTarget.src = 'src/assets/404-error.png';
+          }}
         />
+        <button className={`${isMovieFavorite ? 'favorited' : 'notfavorited'}`} onClick={handleFavoriteClick}>
+          {isMovieFavorite ? 'Remove from Favorites' : 'Add to Favorites'}
+        </button>
         <span className="genres-label"><b>Genre(s):</b></span>
         <div className="genres">
           {movie.genres.map((genre, i) => (

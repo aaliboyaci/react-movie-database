@@ -24,13 +24,12 @@ li {
 }
 
 .movie-item {
-  width: calc(20% - 40px); /* 20% genişlikte */
+  width: calc(21% - 40px); /* 20% genişlikte */
   margin: 10px;
   border-radius: 8px;
   display: flex;
   flex-wrap: nowrap;
   justify-content: center;
-  align-items: stretch;
 }
 
 .movie-link {

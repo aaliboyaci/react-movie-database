@@ -7,7 +7,7 @@ import './index.css'
 const rootElement = document.getElementById('root')!;
 ReactDOM.createRoot(rootElement).render(
   <React.StrictMode>
-    <Router>
+    <Router  basename={process.env.NODE_ENV === 'development' ? '/' : '/react-movie-database/'}>
     <App />
     </Router>
   </React.StrictMode>,

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import "./SearchPage.css";
+import "./Search/SearchPage.css";
 import Loading from "../Components/Loading";
 import { Trend, trendingFetch } from '../Services/trendingFetch';
 import { posterBaseUrl } from '../Services/tmdbApiServices';
@@ -19,6 +19,7 @@ const Trending: React.FC = () => {
       <h2>Trending Movies</h2>
       {trendingMovies.length === 0 ? (
         <p>No movies found.</p>) : (
+          <><p><i>Trending movies in last week</i></p>
         <ul className="movie-list">
           {trendingMovies.map((movie) => (
             <li key={movie.id} className="movie-item">
@@ -39,6 +40,7 @@ const Trending: React.FC = () => {
             </li>
           ))}
         </ul>
+        </>
       )}
     </div>
   );
