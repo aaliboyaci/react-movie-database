@@ -65,6 +65,33 @@ li {
   color: #888;
 }
 
+.searchSelectOff {
+  background-color: #888;
+  color:#424242;
+  border: none;
+  border-radius: 4px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+.searchSelectOff:hover{
+  background-color: #08591b;
+  color: #04d134;
+}
+
+.searchSelectOn {
+  background-color:#08591b;
+  color:#04d134;
+  border: none;
+  border-radius: 4px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.searchSelectOn:hover{
+  background-color: #08591b;
+  color: #04d134;
+}
+
 @media screen and (max-width: 768px) {
   .movie-item {
     width: calc(25% - 40px); /* 25% genişlikte */
@@ -86,3 +113,4 @@ li {
     width: calc(50% - 40px); /* 50% genişlikte */
   }
 }
+

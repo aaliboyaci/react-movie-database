@@ -7,6 +7,7 @@ import Movie from "../../Services/Movie"
 import { useSelector } from 'react-redux';
 import MovieList from '../../Components/Search/MovieList';
 import PersonList, { Person } from '../../Components/Search/PersonList';
+import SearchButtons from './searchButtons';
 
 
 
@@ -25,10 +26,10 @@ const SearchPage: React.FC = () => {
   if (isLoading) { return <Loading /> }
   if (isLoading2) { return <Loading /> }
 
-  console.log(searchSelect);
-  console.log(movies);
-  console.log(persons);
-  
+  // console.log(searchSelect);
+  // console.log(movies);
+  // console.log(persons);
+
   return (<>
 
     <div id="search-container">
@@ -36,24 +37,19 @@ const SearchPage: React.FC = () => {
         <MovieList movies={movies} /></>
       ) : (<>
         <h2>Search Results for "{query}"</h2>
-        <div style={{ display: 'flex' }}>
-          <button onClick={() => setsearchSelect(1)}>Movies</button>
-          <button onClick={() => setsearchSelect(2)}>People</button>
-        </div>
-        {(searchSelect === 0 || searchSelect=== 1) &&<><h2>Movies</h2>
-        <MovieList movies={movies} /></>}
-        {(searchSelect === 0 || searchSelect=== 2) &&<><h2>People</h2>
-        <PersonList persons={persons} /></>}</>
+        <SearchButtons searchSelect={searchSelect} setsearchSelect={setsearchSelect} setPage={setPage} />
+        {(searchSelect === 0 || searchSelect === 1) && <><h2>Movies</h2>
+          <MovieList movies={movies} /></>}
+        {(searchSelect === 0 || searchSelect === 2) && <><h2>People</h2>
+          <PersonList persons={persons} /></>}</>
       )}
 
-
-
-        {((searchSelect === 1 || searchSelect=== 2)|| genreId) &&(
-      movies.length > 0 ?
-        (page > 1 ? ( <div style={{ display: 'flex' }}>
-          <button onClick={() => (setPage(page - 1))}>prev page</button>
-          <button onClick={() => (setPage(page + 1))}>next page</button></div>) : (<button onClick={() => (setPage(page + 1))}>next page</button>))
-        : (<button onClick={() => (setPage(1))}>go back</button>)
+      {((searchSelect === 1 || searchSelect === 2) || genreId) && (
+        movies.length > 0 ?
+          (page > 1 ? (<div style={{ display: 'flex' }}>
+            <button onClick={() => (setPage(page - 1))}>prev page</button>
+            <button onClick={() => (setPage(page + 1))}>next page</button></div>) : (<button onClick={() => (setPage(page + 1))}>next page</button>))
+          : (<button onClick={() => (setPage(1))}>go back</button>)
       )}
     </div>
   </>
