@@ -26,6 +26,7 @@ const MovieTrailers: React.FC<MovieProps> = ({ movieId }) => {
                     `${baseUrl}movie/${movieId}/videos?api_key=${apiKey}`
                 );
                 setTrailers(response.data.results);
+                console.log(response.data.results);
             } catch (error) {
                 console.error('Error fetching movie trailers:', error);
             }
@@ -33,12 +34,17 @@ const MovieTrailers: React.FC<MovieProps> = ({ movieId }) => {
         fetchTrailers();
     }, [movieId, apiKey]);
 
+    const filteredTrailers = trailers.filter(trailer => {
+        const lowerCaseName = trailer.name.toLowerCase();
+        return lowerCaseName.includes("trailer") || lowerCaseName.includes("official");
+    });
+
     return (
         <div>
-            {trailers.length > 0 ? (
+            {filteredTrailers.length > 0 ? (
                 <div>
                     <h2>Trailers</h2>
-                    <ul>{trailers.map((trailer) => (
+                    <ul>{filteredTrailers.map((trailer) => (
                         <li key={trailer.id}>
                             <iframe
                                 style={{ border: "none" }}

@@ -67,7 +67,7 @@ const Details = () => {
           <b>Overview:</b>
           <div className="movie-text">{movie.overview}</div>
         </div>
-        <MovieTrailers movieId={movie.id} />
+        
         <p style={{ color: movie.status === 'Released' ? '#04d134' : 'red' }}>
           <b>Status: </b>{movie.status}</p>
         <p className="vote-average"><b>Vote Average: </b>{movie.vote_average}</p>
@@ -78,7 +78,7 @@ const Details = () => {
         <hr className='line'></hr>
         <div className="movie-cast">
 
-          <h3 className="cast-title">Cast:</h3>
+          <h2 className="cast-title">Cast</h2>
           {director && <><p><b>Director:</b></p> <Link to={`${PERSON}${director.id}`} className="movie-link">{director.name}</Link></>}
           <p><b>Main Cast:</b></p>
           <ul className="cast-list">
@@ -92,7 +92,7 @@ const Details = () => {
           <br></br>
           <hr className='line'></hr>
           <p className="budget"><b>Budget: </b>$ {movie.budget}</p>
-
+          <MovieTrailers movieId={movie.id} />
         </div>
       </div>
     </div>
