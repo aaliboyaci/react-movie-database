@@ -7,7 +7,7 @@ import Movie from "../../Services/Movie"
 import { useSelector } from 'react-redux';
 import MovieList from '../../Components/Search/MovieList';
 import PersonList, { Person } from '../../Components/Search/PersonList';
-import SearchButtons from './searchButtons';
+import SearchButtons from './SearchButtons';
 
 
 
