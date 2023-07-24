@@ -1,6 +1,7 @@
 import axios from 'axios';
-import { baseUrl, trendUrl, apiKey } from './apiPaths';
+import { baseUrl, trendUrl, apiKey, genreListUrl } from './apiPaths';
 import { MovieDTO } from './movieDTO';
+import { GenreDTO } from './genreDTO';
 
 const API_KEY = `${apiKey}`;
 
@@ -45,10 +46,25 @@ export async function getTrendingMovies(): Promise<MovieDTO[]> {
             },
         });
         const trendingMovies: MovieDTO[] = response.data.results;
-
+        
         return trendingMovies;
     } catch (error) {
         console.error('Error fetching trending movies:', error);
+        throw error;
+    }
+}
+
+export async function getGenreList(): Promise<GenreDTO[]> {
+    try {
+        const response = await axiosInstance.get(genreListUrl, {
+            params: {
+                api_key: API_KEY,
+            },
+        });
+        const genreList: GenreDTO[] = response.data.genres;
+        return genreList;
+    } catch (error) {
+        console.error('Error fetching genre list:', error);
         throw error;
     }
 }

@@ -1,33 +1,39 @@
-import React, { useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import "./genres.css"
 import { useNavigate } from 'react-router-dom';
 import Loading from "../../Components/Loading"
 import { genreListFetch } from '../../../application/Services/genreListFetch';
-import { useDispatch, useSelector } from 'react-redux';
-import { setGenreTitle} from '../../../store/actions';
+import { useDispatch } from 'react-redux';
+import { setGenreTitle } from '../../../store/actions';
 import { SEARCHBYID } from '../routes';
+import { Genre } from "../../../application/Services/genreListFetch";
 
-export interface Genre {
-  id: number;
-  name: string;
-}
+
+
 
 export default function GenresPage() {
   const [genres, setGenres] = useState<Genre[]>([]);
-  const [titleGenre, setTitleGenre] =useState <string>("");
+  const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
-  const { isLoading, error } = genreListFetch(setGenres)
   const dispatch = useDispatch();
-  const genreName = useSelector((state: any) => state.genreTitle);
+
+
+  useEffect(() => {
+    genreListFetch()
+      .then((genreList) => {
+        setGenres(genreList);
+        setIsLoading(false);
+      })
+      .catch((error) => { console.error(error); });
+  }, []);
 
   if (isLoading) { return <Loading />; }
-  if (error) { return <p>Error: {error}</p>; }
 
   const handleGenreClick = (genreId: number, genreName: string) => {
     dispatch(setGenreTitle(genreName));
     navigate(`${SEARCHBYID}${genreId}`);
   };
-  
+
 
   return (
     <>
