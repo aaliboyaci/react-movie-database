@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import "./Search/SearchPage.css";
-import Loading from "../Components/Loading";
-import { Trend, trendingFetch } from '../Services/trendingFetch';
-import { posterBaseUrl } from '../Services/tmdbApiServices';
-import { DETAILS } from './routes';
+import "../Search/SearchPage.css";
+import Loading from "../../Components/Loading";
+import { Trend, trendingFetch } from '../../../application/Services/trendingFetch';
+import { posterBaseUrl } from '../../../application/Services/tmdbApiServices';
+import { DETAILS } from '../routes';
 
 
 const Trending: React.FC = () => {

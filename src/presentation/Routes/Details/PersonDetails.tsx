@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import Loading from '../Components/Loading';
-import personFetch, { PersonDetails } from '../Services/personFetch';
-import "./personPage.css";
-import { posterBaseUrl } from '../Services/tmdbApiServices';
-import { DETAILS } from './routes';
+import Loading from '../../Components/Loading';
+import personFetch, { PersonDetails } from '../../../application/Services/personFetch';
+import "./PersonDetails.css";
+import { posterBaseUrl } from '../../../application/Services/tmdbApiServices';
+import { DETAILS } from '../routes';
 
 
 export interface popProps {

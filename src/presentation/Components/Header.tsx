@@ -4,7 +4,7 @@ import './header.css';
 import { useNavigate } from 'react-router-dom';
 import searchImage from '../assets/search.png';
 import { useDispatch } from 'react-redux';
-import { setGenreTitle} from '../store/actions';
+import { setGenreTitle} from '../../store/actions';
 import { HOME, TRENDING, GENRESPAGE, WATCHLIST, SEARCBYHQUERY} from  "../Routes/routes"
 
 interface HeaderProps { }

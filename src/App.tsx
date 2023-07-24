@@ -1,19 +1,19 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import Header from './Components/Header';
-import Footer from './Components/Footer';
-import HomePage from './Routes/HomePage';
-import Trending from './Routes/Trending';
-import GenresPage from './Routes/GenresPage';
-import WatchList from './Routes/WatchList';
-import Details from "./Routes/Details";
-import ErrorPage from "./Routes/ErrorPage";
-import SearchPage from "./Routes/Search/SearchPage";
 import './App.css';
 import store from './store';
-import PersonPage from './Routes/PersonPage';
-import { HOME, TRENDING, GENRESPAGE, WATCHLIST, DETAILSPAGE, PERSONPAGE, SEARCHPAGE, ERROR } from  "./Routes/routes"
+import Header from './presentation/Components/Header';
+import Footer from './presentation/Components/Footer';
+import HomePage from './presentation/Routes/HomePage';
+import Trending from './presentation/Routes/Trending/TrendingPage';
+import GenresPage from './presentation/Routes/Genres/GenresPage';
+import WatchList from './presentation/Routes/WatchList/WatchList';
+import Details from "./presentation/Routes/Details/MovieDetails";
+import ErrorPage from "./presentation/Routes/ErrorPage";
+import SearchPage from "./presentation/Routes/Search/SearchPage";
+import PersonPage from './presentation/Routes/Details/PersonDetails';
+import { HOME, TRENDING, GENRESPAGE, WATCHLIST, DETAILSPAGE, PERSONPAGE, SEARCHPAGE, ERROR } from  "./presentation/Routes/routes"
 
 
 function App() {

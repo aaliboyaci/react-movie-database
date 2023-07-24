@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { baseUrl, apiKey } from '../tmdbApiServices';
 import useFetch from '../../Hooks/useFetch';
 import Movie from "../Movie"
-import { Person } from '../../Components/Search/PersonList';
+import { Person } from '../../../presentation/Routes/Search/PersonList';
 
 
 interface searchProps {

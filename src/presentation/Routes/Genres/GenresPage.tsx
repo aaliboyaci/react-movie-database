@@ -1,11 +1,11 @@
 import React, { useState} from 'react';
 import "./genres.css"
 import { useNavigate } from 'react-router-dom';
-import Loading from "../Components/Loading"
-import { genreListFetch } from '../Services/genreListFetch';
+import Loading from "../../Components/Loading"
+import { genreListFetch } from '../../../application/Services/genreListFetch';
 import { useDispatch, useSelector } from 'react-redux';
-import { setGenreTitle} from '../store/actions';
-import { SEARCHBYID } from './routes';
+import { setGenreTitle} from '../../../store/actions';
+import { SEARCHBYID } from '../routes';
 
 export interface Genre {
   id: number;

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import useFetch from "../Hooks/useFetch";
-import { baseUrl, apiKey } from '../Services/tmdbApiServices';
-import { popProps } from "../Routes/PersonPage"
+import { baseUrl, apiKey } from './tmdbApiServices';
+import { popProps } from "../../presentation/Routes/Details/PersonDetails"
 
 
 export interface PersonDetails {

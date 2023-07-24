@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { genreListUrl } from './tmdbApiServices'
 import useFetch from '../Hooks/useFetch';
-import { Genre } from '../Routes/GenresPage';
+import { Genre } from '../../presentation/Routes/Genres/GenresPage';
 
 
 

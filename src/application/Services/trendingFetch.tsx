@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import useFetch from "../Hooks/useFetch";
-import { trendUrl } from '../Services/tmdbApiServices';
+import { trendUrl } from './tmdbApiServices';
 
 
 export interface Trend {

@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import "./SearchPage.css";
 import Loading from "../../Components/Loading"
-import searchMovieFetch from '../../Services/Search/searchMovieFetch';
-import Movie from "../../Services/Movie"
+import searchMovieFetch from '../../../application/Services/Search/searchMovieFetch';
+import Movie from "../../../application/Services/Movie"
 import { useSelector } from 'react-redux';
-import MovieList from '../../Components/Search/MovieList';
-import PersonList, { Person } from '../../Components/Search/PersonList';
+import MovieList from './MovieList';
+import PersonList, { Person } from './PersonList';
 import SearchButtons from './SearchButtons';
 
 

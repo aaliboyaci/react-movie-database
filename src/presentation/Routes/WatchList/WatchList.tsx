@@ -2,10 +2,10 @@ import React from 'react';
 import { useState } from 'react';
 import './watchList.css';
 import { useSelector, useDispatch } from 'react-redux';
-import { removeFavoriteMovie } from '../store/actions';
+import { removeFavoriteMovie } from '../../../store/actions';
 import { Link } from 'react-router-dom';
-import { posterBaseUrl } from '../Services/tmdbApiServices';
-import { DETAILS } from './routes';
+import { posterBaseUrl } from '../../../application/Services/tmdbApiServices';
+import { DETAILS } from '../routes';
 
 interface Movie {
   id: number;

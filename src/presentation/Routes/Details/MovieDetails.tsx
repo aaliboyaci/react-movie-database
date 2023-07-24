@@ -1,18 +1,18 @@
 import { useState } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
-import './Details.css';
+import './MovieDetails.css';
 import { useSelector, useDispatch } from 'react-redux';
-import { addFavoriteMovie, removeFavoriteMovie } from '../store/actions';
-import Loading from '../Components/Loading';
-import useDetailsFetch from '../Services/useDetailsFetch';
-import { Movie, CrewMember, CastMember } from "../Services/detailsTypes"
-import { setGenreTitle } from '../store/actions';
-import { PERSON, SEARCHBYID } from "./routes"
-import { posterBaseUrl } from '../Services/tmdbApiServices';
-import MovieTrailers from '../Services/movieTrailer';
+import { addFavoriteMovie, removeFavoriteMovie } from '../../../store/actions';
+import Loading from '../../Components/Loading';
+import useDetailsFetch from '../../../application/Services/useDetailsFetch';
+import { Movie, CrewMember, CastMember } from "../../../application/Services/detailsTypes"
+import { setGenreTitle } from '../../../store/actions';
+import { PERSON, SEARCHBYID } from "../routes"
+import { posterBaseUrl } from '../../../application/Services/tmdbApiServices';
+import MovieTrailers from '../../../application/Services/movieTrailer';
 
 
-const Details = () => {
+const MovieDetails = () => {
   const { showId } = useParams<{ showId: string | undefined }>();
   const [movie, setMovie] = useState<Movie | null>(null);
   const [credits, setCredits] = useState<any | null>(null);
@@ -99,4 +99,4 @@ const Details = () => {
   );
 };
 
-export default Details;
+export default MovieDetails;

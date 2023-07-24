@@ -1,8 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { DETAILS, PERSON } from "../../Routes/routes";
-import { posterBaseUrl } from '../../Services/tmdbApiServices';
+import { DETAILS, PERSON } from "../routes";
+import { posterBaseUrl } from '../../../application/Services/tmdbApiServices';
 import "../../Routes/Search/SearchPage.css";
+
 
 
 export interface Person {
@@ -36,7 +37,7 @@ const PersonList: React.FC<PersonListProps> = ({ persons }) => {
               alt={person.name}
               className="movie-poster"
               onError={(e: React.SyntheticEvent<HTMLImageElement>) => {
-                e.currentTarget.src = 'src/assets/no-avatar.png';
+                e.currentTarget.src = 'src/presentation/assets/no-avatar.png';
               }}
             />
             <div className="movie-info">

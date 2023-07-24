@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { DETAILS } from "../../Routes/routes";
-import  Movie  from "../../Services/Movie";
-import { posterBaseUrl } from '../../Services/tmdbApiServices';
 import "../../Routes/Search/SearchPage.css";
+import Movie from "../../../application/Services/Movie";
+import { DETAILS } from "../routes";
+import { posterBaseUrl } from "../../../application/Services/tmdbApiServices";
 
 
 interface MovieListProps {
@@ -25,7 +25,7 @@ const MovieList: React.FC<MovieListProps> = ({ movies }) => {
               alt={movie.title}
               className="movie-poster"
               onError={(e: React.SyntheticEvent<HTMLImageElement>) => {
-                e.currentTarget.src = 'src/assets/404-error.png';
+                e.currentTarget.src = 'src/presentation/assets/404-error.png';
               }}
             />
             <div className="movie-info">

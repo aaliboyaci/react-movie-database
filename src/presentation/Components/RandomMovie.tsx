@@ -3,10 +3,10 @@ import '../Routes/HomePage.css';
 import "./randomMovie.css";
 import { Link } from 'react-router-dom';
 import diceImg from '../assets/dice.png';
-import useRandomMovieFetch from '../Services/randomMovieFetch';
-import { posterBaseUrl } from '../Services/tmdbApiServices';
+import useRandomMovieFetch from '../../application/Services/randomMovieFetch';
+import { posterBaseUrl } from '../../application/Services/tmdbApiServices';
 import { DETAILS } from '../Routes/routes';
-import Movie from '../Services/Movie';
+import Movie from '../../application/Services/Movie';
 
 
 

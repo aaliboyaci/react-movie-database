@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
-import { baseUrl, apiKey } from '../Services/tmdbApiServices';
+import { baseUrl, apiKey } from './tmdbApiServices';
 import axios from 'axios';
-import Movie from "../Services/Movie"
+import Movie from "./Movie"
 
 const useRandomMovieFetch = (setRandomMovie: React.Dispatch<React.SetStateAction<Movie | null>>, dice: number) => {
   useEffect(() => {
