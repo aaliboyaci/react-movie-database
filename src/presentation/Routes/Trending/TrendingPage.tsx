@@ -1,25 +1,15 @@
-import React, { useEffect, useState } from 'react';
 import "../Search/SearchPage.css";
 import Loading from "../../Components/Loading";
-import { fetchTrendingMovies } from '../../../application/FetchActions/trendingMovieFetch';
-import { Movie } from '../../../application/Types/MovieTypes';
+import { useTrendingMoviesFetch } from '../../../application/FetchActions/trendingMovieFetch';
 import MovieCard from '../../Components/MovieCard';
 
 
-const Trending: React.FC = () => {
-  const [trendingMovies, setTrendingMovies] = useState<Movie[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
+export default function Trending (){
 
-  useEffect(() => {
-    fetchTrendingMovies()
-      .then((trendingMovies) => {
-        setTrendingMovies(trendingMovies);
-        setIsLoading(false);
-      })
-      .catch((error) => { console.error(error); });
-  }, []);
+const { data: trendingMovies, isLoading, error } = useTrendingMoviesFetch();
 
-  if (isLoading == true) { return (<Loading />) }
+  if (isLoading) { return <Loading />; }
+  if (trendingMovies ===null){return {error}}
   return (
     <div id="search-container">
       <h2>Trending Movies</h2>
@@ -39,4 +29,4 @@ const Trending: React.FC = () => {
   );
 };
 
-export default Trending;
+

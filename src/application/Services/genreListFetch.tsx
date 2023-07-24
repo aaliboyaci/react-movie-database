@@ -1,5 +1,6 @@
 import { getGenreList } from '../../data-access/apiAccess';
 import { GenreDTO } from '../../data-access/genreDTO';
+import { useFetch } from '../Hooks/useFetchV2';
 
 export interface Genre {
   id: number;
@@ -27,3 +28,6 @@ export async function genreListFetch(): Promise<Genre[]> {
 
 }
 
+export function useGenreListFetch() {
+  return useFetch<Genre[]>(() => genreListFetch());
+}

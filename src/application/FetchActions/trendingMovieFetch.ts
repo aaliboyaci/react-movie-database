@@ -1,5 +1,6 @@
 import { getTrendingMovies } from '../../data-access/apiAccess';
 import { MovieDTO } from '../../data-access/movieDTO';
+import { useFetch } from '../Hooks/useFetchV2';
 import { Movie } from '../Types/MovieTypes';
 
 
@@ -24,3 +25,9 @@ export async function fetchTrendingMovies(): Promise<Movie[]> {
         throw error;
     }
 }
+
+
+
+export function useTrendingMoviesFetch() {
+    return useFetch<Movie[]>(() => fetchTrendingMovies());
+  }
