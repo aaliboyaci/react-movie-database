@@ -1,50 +1,16 @@
-import axios from 'axios';
 import { baseUrl, trendUrl, apiKey, genreListUrl } from './apiPaths';
 import { MovieDTO } from './movieDTO';
 import { GenreDTO } from './genreDTO';
+import { MovieDetailsDTO } from './movieDetailsDTO';
+import { MovieCastDetailsDTO } from './movieCastDetailsDTO';
+import { MovieTrailersDTO } from './movieTrailersDTO';
+import axiosInstance from './axiosInstance';
 
 const API_KEY = `${apiKey}`;
 
-//interceptors
-const axiosInstance = axios.create({
-    baseURL: `${baseUrl}`,
-});
-
-// Request interceptor
-axiosInstance.interceptors.request.use(
-    (config) => {
-        console.log("request will be sent");
-        console.log('Request Interceptor - Request Config:', config);
-        return config;
-    },
-    (error) => {
-        console.error('Request Interceptor - Request Error:', error);
-        return Promise.reject(error);
-    }
-);
-
-// Response interceptor
-axiosInstance.interceptors.response.use(
-    (response) => {
-        console.log("request has came");
-        console.log('Response Interceptor - Response Data:', response.data);
-        return response;
-    },
-    (error) => {
-        console.error('Response Interceptor - Response Error:', error);
-        return Promise.reject(error);
-    }
-);
-//interceptors ending
-
-
 export async function getTrendingMovies(): Promise<MovieDTO[]> {
     try {
-        const response = await axiosInstance.get(trendUrl, {
-            params: {
-                api_key: API_KEY,
-            },
-        });
+        const response = await axiosInstance.get(trendUrl);
         const trendingMovies: MovieDTO[] = response.data.results;
         
         return trendingMovies;
@@ -65,6 +31,54 @@ export async function getGenreList(): Promise<GenreDTO[]> {
         return genreList;
     } catch (error) {
         console.error('Error fetching genre list:', error);
+        throw error;
+    }
+}
+
+export async function getMovieDetails(show_id:string | undefined): Promise<MovieDetailsDTO> {
+    try {
+        const showUrl = `${baseUrl}movie/${show_id}?api_key=${apiKey}`;
+        const response = await axiosInstance.get(showUrl, {
+            params: {
+                api_key: API_KEY,
+            },
+        });
+        const movieDetailsResponse: MovieDetailsDTO = response.data;
+        return movieDetailsResponse;
+    } catch (error) {
+        console.error('Error fetching movie details:', error);
+        throw error;
+    }
+}
+
+export async function getMovieCastDetails(show_id:string | undefined): Promise<MovieCastDetailsDTO> {
+    try {
+        const castUrl = `${baseUrl}movie/${show_id}/credits?api_key=${apiKey}`;
+        const response = await axiosInstance.get(castUrl, {
+            params: {
+                api_key: API_KEY,
+            },
+        });
+        const movieDetailsResponse: MovieCastDetailsDTO = response.data;
+        return movieDetailsResponse;
+    } catch (error) {
+        console.error('Error fetching movie cast details:', error);
+        throw error;
+    }
+}
+
+export async function getMovieTrailers(show_id:string | undefined): Promise<MovieTrailersDTO[]> {
+    try {
+        const trailerURL = `${baseUrl}movie/${show_id}/videos?api_key=${apiKey}`;
+        const response = await axiosInstance.get(trailerURL, {
+            params: {
+                api_key: API_KEY,
+            },
+        });
+        const movieTrailersResponse: MovieTrailersDTO[] = response.data.results;
+        return movieTrailersResponse;
+    } catch (error) {
+        console.error('Error fetching movie trailers:', error);
         throw error;
     }
 }

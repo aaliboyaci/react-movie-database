@@ -1,7 +1,7 @@
 import "./genres.css"
 import { useNavigate } from 'react-router-dom';
 import Loading from "../../Components/Loading"
-import { useGenreListFetch } from '../../../application/Services/genreListFetch';
+import { useGenreListFetch } from '../../../application/FetchActions/genreListFetch';
 import { useDispatch } from 'react-redux';
 import { setGenreTitle } from '../../../store/actions';
 import { SEARCHBYID } from '../routes';

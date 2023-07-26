@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { apiKey, baseUrl } from './tmdbApiServices';
+import { apiKey, baseUrl } from '../../../application/Services/tmdbApiServices';
+import { useMovieTrailersFetch } from '../../../application/FetchActions/movieTrailersFetch';
+import Loading from '../../Components/Loading';
 
 interface MovieTrailer {
     id: string;
@@ -17,47 +19,33 @@ interface MovieProps {
 }
 
 const MovieTrailers: React.FC<MovieProps> = ({ movieId }) => {
-    const [trailers, setTrailers] = useState<MovieTrailer[]>([]);
+    const { data, isLoading, error } = useMovieTrailersFetch(movieId.toString());
 
-    useEffect(() => {
-        const fetchTrailers = async () => {
-            try {
-                const response = await axios.get<MovieTrailersResponse>(
-                    `${baseUrl}movie/${movieId}/videos?api_key=${apiKey}`
-                );
-                setTrailers(response.data.results);
-                console.log(response.data.results);
-            } catch (error) {
-                console.error('Error fetching movie trailers:', error);
-            }
-        };
-        fetchTrailers();
-    }, [movieId, apiKey]);
-
-    const filteredTrailers = trailers.filter(trailer => {
-        const lowerCaseName = trailer.name.toLowerCase();
+    const videos = data?.filter(trailer => {
+        const lowerCaseName = trailer.videoName.toLowerCase();
         return lowerCaseName.includes("trailer") || lowerCaseName.includes("official");
     });
-
+    
     return (
         <div>
-            {filteredTrailers.length > 0 ? (
+            {isLoading && <Loading/>}
+            {data && data.length > 0 ? (
                 <div>
                     <h2>Trailers</h2>
-                    <ul>{filteredTrailers.map((trailer) => (
-                        <li key={trailer.id}>
+                    <ul>{videos?.map((trailer) => (
+                        <li key={trailer.videoID}>
                             <iframe
                                 style={{ border: "none" }}
                                 width="560"
                                 height="315"
                                 src={`https://www.youtube.com/embed/${trailer.key}`}
-                                title={trailer.name}
+                                title={trailer.videoName}
                                 allowFullScreen></iframe>
                         </li>))}
                     </ul>
                 </div>
             ) : (
-                <p>No trailers found for this movie.</p>
+                <p>No trailers found for this movie. {error}</p>
             )}
         </div>
     );
