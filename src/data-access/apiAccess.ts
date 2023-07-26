@@ -1,10 +1,11 @@
-import { baseUrl, trendUrl, apiKey, genreListUrl } from './apiPaths';
+import { baseUrl, trendUrl, apiKey, genreListUrl, randomMovieURL } from './apiPaths';
 import { MovieDTO } from './movieDTO';
 import { GenreDTO } from './genreDTO';
 import { MovieDetailsDTO } from './movieDetailsDTO';
 import { MovieCastDetailsDTO } from './movieCastDetailsDTO';
 import { MovieTrailersDTO } from './movieTrailersDTO';
 import axiosInstance from './axiosInstance';
+import { RandomMovieDTO } from './randomMovieDTO';
 
 const API_KEY = `${apiKey}`;
 
@@ -77,6 +78,19 @@ export async function getMovieTrailers(show_id:string | undefined): Promise<Movi
         });
         const movieTrailersResponse: MovieTrailersDTO[] = response.data.results;
         return movieTrailersResponse;
+    } catch (error) {
+        console.error('Error fetching movie trailers:', error);
+        throw error;
+    }
+}
+
+export async function getRandomMovie(randomPage:number): Promise<RandomMovieDTO> {
+    try {
+        const randomURL = `${randomMovieURL}${randomPage}`;
+        const response = await axiosInstance.get(randomURL);
+
+        const randomMovieResponse: RandomMovieDTO = response.data;
+        return randomMovieResponse;
     } catch (error) {
         console.error('Error fetching movie trailers:', error);
         throw error;

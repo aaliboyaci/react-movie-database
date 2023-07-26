@@ -1,22 +1,23 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../Routes/HomePage.css';
 import "./randomMovie.css";
 import { Link } from 'react-router-dom';
 import diceImg from '../assets/dice.png';
-import useRandomMovieFetch from '../../application/Services/randomMovieFetch';
+// import useRandomMovieFetch from '../../application/Services/randomMovieFetch';
 import { posterBaseUrl } from '../../application/Services/tmdbApiServices';
 import { DETAILS } from '../Routes/routes';
 import Movie from '../../application/Services/Movie';
+import { useRandomMovieFetch } from '../../application/FetchActions/randomMovieFetch';
+import Loading from './Loading';
 
 
 
 
 const RandomMovie: React.FC = () => {
-  const [randomMovie, setRandomMovie] = useState<Movie | null>(null);
-  const [dice, setDice] = useState<number>(1);
-  useRandomMovieFetch(setRandomMovie, dice);
+  const [dice,setDice] = useState(1);
+  const { data: movie, isLoading, error: movieError } = useRandomMovieFetch(dice);
 
-
+  if(isLoading){<Loading/>}
   return (
 
     <div className="card">
@@ -25,19 +26,19 @@ const RandomMovie: React.FC = () => {
         <img src={diceImg} alt="random" className="dice" />
       </div>
       <div className="content">
-        {randomMovie ? (
+        {movie ?  (
           <>
-            <Link to={`${DETAILS}${randomMovie.id}`} className="movie-link">
-              <img src={`${posterBaseUrl}${randomMovie.poster_path}`} alt="Random Movie" />
-              <h3 className="random-title">{randomMovie.title}</h3>
-              <p className="random-year">{randomMovie.release_date.substring(0, 4)}</p>
+            <Link to={`${DETAILS}${movie.id}`} className="movie-link">
+              <img src={`${posterBaseUrl}${movie.posterPath}`} alt="Random Movie" />
+              <h3 className="random-title">{movie.name}</h3>
+              <p className="random-year">{movie.releaseDate.substring(0, 4)}</p>
             </Link>
           </>
         ) : (
-          <p>Error occurred | Please refresh page</p>
+          movieError
         )}
       </div>
-      <button className="random-btn" onClick={() => setDice(dice + 1)}>
+      <button className="random-btn" onClick={()=>setDice(dice+1)}>
         Surprise Me!
       </button>
     </div>
