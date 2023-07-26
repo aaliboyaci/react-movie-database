@@ -9,7 +9,7 @@ import { SEARCHBYID } from '../routes';
 
 
 
-export default function GenresPage() {
+export const GenresPage: React.FC = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -17,7 +17,7 @@ export default function GenresPage() {
 
  
   if (isLoading) { return <Loading />; }
-  if (genres ===null){return {error}}
+  if (genres ===null){return <>{error}</>}
 
   const handleGenreClick = (genreId: number, genreName: string) => {
     dispatch(setGenreTitle(genreName));

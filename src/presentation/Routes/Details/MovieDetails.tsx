@@ -3,9 +3,10 @@ import './MovieDetails.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { addFavoriteMovie, removeFavoriteMovie } from '../../../store/actions';
 import Loading from '../../Components/Loading';
-import { Movie, CastMember } from "../../../application/Services/detailsTypes"
+import { CastMember } from "../../../application/Types/MovieCastDetailsTypes";
+import { Movie } from "../../../application/Types/MovieTypes";
 import { setGenreTitle } from '../../../store/actions';
-import { PERSON, SEARCHBYID } from "../routes"
+import { PERSON, SEARCHBYID } from "../routes";
 import { posterBaseUrl } from '../../../application/Services/tmdbApiServices';
 import MovieTrailers from './movieTrailer';
 import { useMovieDetailsFetch } from '../../../application/FetchActions/movieDetailsFetch';
@@ -13,7 +14,7 @@ import { useMovieCastDetailsFetch } from '../../../application/FetchActions/movi
 
 
 
-export default function MovieDetails() {
+export  const MovieDetailsPage: React.FC = () => {
   const { showId } = useParams<{ showId: string | undefined }>();
   const { data: movie, isLoading: movieLoad, error: movieError } = useMovieDetailsFetch(showId);
   const { data: cast, isLoading: castLoad, error: castError } = useMovieCastDetailsFetch(showId);
@@ -23,9 +24,9 @@ export default function MovieDetails() {
 
 
   if (movieLoad) { return <Loading />; }
-  if (movie ===null){return {movieError}}
+  if (movie === null) { return <>{ movieError }</> }
   if (castLoad) { return <Loading />; }
-  if (cast ===null){return {castError}}
+  if (cast === null) { return <>{ castError }</> }
   const isMovieFavorite = favoriteMovies.some((favMovie: Movie) => favMovie.id === movie.id);
 
   const handleFavoriteClick = () => {
@@ -40,7 +41,7 @@ export default function MovieDetails() {
     dispatch(setGenreTitle(genreName));
     navigate(`${SEARCHBYID}${genreId}`);
   };
-
+ 
   return (
     <div className="movie-details">
       <div className="movie-info">
@@ -67,7 +68,7 @@ export default function MovieDetails() {
           <b>Overview:</b>
           <div className="movie-text">{movie.overview}</div>
         </div>
-        
+
         <p style={{ color: movie.status === 'Released' ? '#04d134' : 'red' }}>
           <b>Status: </b>{movie.status}</p>
         <p className="vote-average"><b>Vote Average: </b>{movie.voteAverage}</p>

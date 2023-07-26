@@ -4,12 +4,13 @@ import { useTrendingMoviesFetch } from '../../../application/FetchActions/trendi
 import MovieCard from '../../Components/MovieCard';
 
 
-export default function Trending (){
+export const Trending: React.FC = () => {
+
 
 const { data: trendingMovies, isLoading, error } = useTrendingMoviesFetch();
 
   if (isLoading) { return <Loading />; }
-  if (trendingMovies ===null){return {error}}
+  if (trendingMovies ===null){return <>{error}</>}
   return (
     <div id="search-container">
       <h2>Trending Movies</h2>
