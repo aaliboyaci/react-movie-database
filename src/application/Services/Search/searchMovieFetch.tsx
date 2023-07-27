@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { baseUrl, apiKey } from '../tmdbApiServices';
 import useFetch from '../../Hooks/useFetch';
 import Movie from "../Movie"
-import { Person } from '../../../presentation/Routes/Search/PersonList';
+import { SearchPersonDTO } from '../../../data-access/searchPersonDTO';
 
 
 interface searchProps {
@@ -13,7 +13,6 @@ interface searchProps {
 }
 
 const searchMovieFetch = ({ query, page, genreId, searchSelect }: searchProps, setMovies: React.Dispatch<React.SetStateAction<Movie[]>>,
-    setPeople: React.Dispatch<React.SetStateAction<Person[]>>,
     setsearchSelect: React.Dispatch<React.SetStateAction<number>>) => {
 
     const searchUrl = `${baseUrl}search/movie?api_key=${apiKey}&query=${query}&page=${page}`;
@@ -38,25 +37,25 @@ const searchMovieFetch = ({ query, page, genreId, searchSelect }: searchProps, s
         }
     }, [isLoading, data, searchSelect]);
 
-    useEffect(() => {
-        if (!isLoading2 && data2 !== null && data2.length !== 0) {
-          const filteredPeople = data2.filter(
-            (person: Person) =>
-              person.known_for_department === "Acting" ||
-              person.known_for_department === "Directing"
-          );
-          const sortedPeople = filteredPeople.sort(
-            (a: Person, b: Person) => b.popularity - a.popularity
-          );
-          if (searchSelect === 0) {
-            setPeople(sortedPeople.slice(0, 5));
-          } else if (searchSelect === 2) {
-            setPeople(sortedPeople);
-          }
-        } else if (data2 == null || data2.length == 0) {
-          setPeople([]);
-        }
-      }, [isLoading2, data2, searchSelect]);
+    // useEffect(() => {
+    //     if (!isLoading2 && data2 !== null && data2.length !== 0) {
+    //       const filteredPeople = data2.filter(
+    //         (person: SearchPersonDTO) =>
+    //           person.known_for_department === "Acting" ||
+    //           person.known_for_department === "Directing"
+    //       );
+    //       const sortedPeople = filteredPeople.sort(
+    //         (a: SearchPersonDTO, b: SearchPersonDTO) => b.popularity - a.popularity
+    //       );
+    //       if (searchSelect === 0) {
+    //         setPeople(sortedPeople.slice(0, 5));
+    //       } else if (searchSelect === 2) {
+    //         setPeople(sortedPeople);
+    //       }
+    //     } else if (data2 == null || data2.length == 0) {
+    //       setPeople([]);
+    //     }
+    //   }, [isLoading2, data2, searchSelect]);
       
 
     useEffect(() => { setsearchSelect(0) }, [query]) /* default değere dönmeme bugını düzelten satır */

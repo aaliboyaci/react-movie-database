@@ -3,46 +3,34 @@ import { Link } from "react-router-dom";
 import { DETAILS, PERSON } from "../routes";
 import { posterBaseUrl } from '../../../application/Services/tmdbApiServices';
 import "../../Routes/Search/SearchPage.css";
+import { SearchPersonType } from "../../../application/Types/SearchPersonTypes";
 
-
-
-export interface Person {
-  adult: boolean;
-  gender: number;
-  id: number;
-  known_for: any[];
-  known_for_department: string;
-  name: string;
-  original_name: string;
-  popularity: number;
-  profile_path: string | null;
+export interface PersonListProps {
+  people: SearchPersonType[] | null;
 }
 
-interface PersonListProps {
-  persons: Person[];
-}
 
-const PersonList: React.FC<PersonListProps> = ({ persons }) => {
-  if (persons.length === 0) {
+const PersonList: React.FC<PersonListProps> = ({ people }) => {
+  if (people?.length === 0) {
     return <div className="person-item">No persons found.</div>;
   }
 
   return (
     <ul className="movie-list">
-      {persons.map((person) => (
-        <li key={person.id} className="movie-item">
-          <Link to={`${PERSON}${person.id}`} className="movie-link">
+      {people?.map((person) => (
+        <li key={person.personID} className="movie-item">
+          <Link to={`${PERSON}${person.personID}`} className="movie-link">
             <img
-              src={person.profile_path ? `${posterBaseUrl}${person.profile_path}` : 'src/assets/no-avatar.png'}
-              alt={person.name}
+              src={person.profilePath ? `${posterBaseUrl}${person.profilePath}` : 'src/assets/no-avatar.png'}
+              alt={person.personName}
               className="movie-poster"
               onError={(e: React.SyntheticEvent<HTMLImageElement>) => {
                 e.currentTarget.src = 'src/presentation/assets/no-avatar.png';
               }}
             />
             <div className="movie-info">
-              <div className="movie-name">{person.name}</div>
-              <p className="movie-year">{person.known_for_department}</p>
+              <div className="movie-name">{person.personName}</div>
+              <p className="movie-year">{person.personJob}</p>
             </div>
           </Link>
         </li>

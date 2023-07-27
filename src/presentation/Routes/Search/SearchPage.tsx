@@ -6,29 +6,28 @@ import searchMovieFetch from '../../../application/Services/Search/searchMovieFe
 import Movie from "../../../application/Services/Movie"
 import { useSelector } from 'react-redux';
 import MovieList from './MovieList';
-import PersonList, { Person } from './PersonList';
+import PersonList from './PersonList';
 import SearchButtons from './SearchButtons';
+import { useSearchPerson } from '../../../application/FetchActions/searchPersonFetch';
 
 
 
 const SearchPage: React.FC = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
-  const [persons, setPeople] = useState<Person[]>([]);
   const location = useLocation();
   const genreId = new URLSearchParams(location.search).get('genreid');
   const query = new URLSearchParams(location.search).get('query');
   const [page, setPage] = useState(1);
   const [searchSelect, setsearchSelect] = useState<number>(0);
-  const { isLoading, isLoading2 } = searchMovieFetch({ query, page, genreId, searchSelect }, setMovies, setPeople, setsearchSelect);
+  const { isLoading, isLoading2 } = searchMovieFetch({ query, page, genreId, searchSelect }, setMovies, setsearchSelect);
   const genreName = useSelector((state: any) => state.genreTitle);
 
+  //#31 searchPerson//
+  const{data: personSearch, isLoading: personLoad, error: personError} = useSearchPerson(page, query?query:"", searchSelect);
 
   if (isLoading) { return <Loading /> }
   if (isLoading2) { return <Loading /> }
 
-  // console.log(searchSelect);
-  // console.log(movies);
-  // console.log(persons);
 
   return (<>
 
@@ -41,7 +40,7 @@ const SearchPage: React.FC = () => {
         {(searchSelect === 0 || searchSelect === 1) && <><h2>Movies</h2>
           <MovieList movies={movies} /></>}
         {(searchSelect === 0 || searchSelect === 2) && <><h2>People</h2>
-          <PersonList persons={persons} /></>}</>
+          <PersonList people={personSearch} /></>}</>
       )}
 
       {((searchSelect === 1 || searchSelect === 2) || genreId) && (

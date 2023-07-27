@@ -8,6 +8,7 @@ import axiosInstance from './axiosInstance';
 import { RandomMovieDTO } from './randomMovieDTO';
 import { PersonDetailsDTO } from './personDetailsDTO';
 import { PersonPopMoviesDTO } from './personPopMoviesDTO';
+import { SearchPersonDTO } from './searchPersonDTO';
 
 const API_KEY = `${apiKey}`;
 
@@ -119,6 +120,18 @@ export async function getPersonPopMovies(personId: string | undefined): Promise<
         return personPopMoviesResponse;
     } catch (error) {
         console.error('Error fetching pop movies:', error);
+        throw error;
+    }
+}
+
+export async function getSearchPerson(page: number, query: string): Promise<SearchPersonDTO[]> {
+    try {
+        const personSearchUrl = `${baseUrl}search/person?api_key=${apiKey}&query=${query}&page=${page}`
+        const response = await axiosInstance.get(personSearchUrl);
+        const movieTrailersResponse: SearchPersonDTO[] = response.data.results;
+        return movieTrailersResponse;
+    } catch (error) {
+        console.error('Error fetching movie trailers:', error);
         throw error;
     }
 }
