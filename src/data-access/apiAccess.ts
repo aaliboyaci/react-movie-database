@@ -6,6 +6,8 @@ import { MovieCastDetailsDTO } from './movieCastDetailsDTO';
 import { MovieTrailersDTO } from './movieTrailersDTO';
 import axiosInstance from './axiosInstance';
 import { RandomMovieDTO } from './randomMovieDTO';
+import { PersonDetailsDTO } from './personDetailsDTO';
+import { PersonPopMoviesDTO } from './personPopMoviesDTO';
 
 const API_KEY = `${apiKey}`;
 
@@ -13,7 +15,7 @@ export async function getTrendingMovies(): Promise<MovieDTO[]> {
     try {
         const response = await axiosInstance.get(trendUrl);
         const trendingMovies: MovieDTO[] = response.data.results;
-        
+
         return trendingMovies;
     } catch (error) {
         console.error('Error fetching trending movies:', error);
@@ -36,7 +38,7 @@ export async function getGenreList(): Promise<GenreDTO[]> {
     }
 }
 
-export async function getMovieDetails(show_id:string | undefined): Promise<MovieDetailsDTO> {
+export async function getMovieDetails(show_id: string | undefined): Promise<MovieDetailsDTO> {
     try {
         const showUrl = `${baseUrl}movie/${show_id}?api_key=${apiKey}`;
         const response = await axiosInstance.get(showUrl, {
@@ -52,7 +54,7 @@ export async function getMovieDetails(show_id:string | undefined): Promise<Movie
     }
 }
 
-export async function getMovieCastDetails(show_id:string | undefined): Promise<MovieCastDetailsDTO> {
+export async function getMovieCastDetails(show_id: string | undefined): Promise<MovieCastDetailsDTO> {
     try {
         const castUrl = `${baseUrl}movie/${show_id}/credits?api_key=${apiKey}`;
         const response = await axiosInstance.get(castUrl, {
@@ -68,7 +70,7 @@ export async function getMovieCastDetails(show_id:string | undefined): Promise<M
     }
 }
 
-export async function getMovieTrailers(show_id:string | undefined): Promise<MovieTrailersDTO[]> {
+export async function getMovieTrailers(show_id: string | undefined): Promise<MovieTrailersDTO[]> {
     try {
         const trailerURL = `${baseUrl}movie/${show_id}/videos?api_key=${apiKey}`;
         const response = await axiosInstance.get(trailerURL, {
@@ -84,7 +86,7 @@ export async function getMovieTrailers(show_id:string | undefined): Promise<Movi
     }
 }
 
-export async function getRandomMovie(randomPage:number): Promise<RandomMovieDTO> {
+export async function getRandomMovie(randomPage: number): Promise<RandomMovieDTO> {
     try {
         const randomURL = `${randomMovieURL}${randomPage}`;
         const response = await axiosInstance.get(randomURL);
@@ -92,7 +94,31 @@ export async function getRandomMovie(randomPage:number): Promise<RandomMovieDTO>
         const randomMovieResponse: RandomMovieDTO = response.data;
         return randomMovieResponse;
     } catch (error) {
-        console.error('Error fetching movie trailers:', error);
+        console.error('Error fetching random movie:', error);
+        throw error;
+    }
+}
+
+export async function getPersonDetails(personId: string | undefined): Promise<PersonDetailsDTO> {
+    try {
+        const personDetailsURL = `${baseUrl}person/${personId}?api_key=${apiKey}`;
+        const response = await axiosInstance.get(personDetailsURL);
+        const personDetailsResponse: PersonDetailsDTO = response.data;
+        return personDetailsResponse;
+    } catch (error) {
+        console.error('Error fetching person details:', error);
+        throw error;
+    }
+}
+
+export async function getPersonPopMovies(personId: string | undefined): Promise<PersonPopMoviesDTO> {
+    try {
+        const personPopMoviesURL = `${baseUrl}person/${personId}/movie_credits?api_key=${apiKey}`;
+        const response = await axiosInstance.get(personPopMoviesURL);
+        const personPopMoviesResponse: PersonPopMoviesDTO = response.data;
+        return personPopMoviesResponse;
+    } catch (error) {
+        console.error('Error fetching pop movies:', error);
         throw error;
     }
 }

@@ -1,6 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import { apiKey, baseUrl } from '../../../application/Services/tmdbApiServices';
+import React from 'react';
 import { useMovieTrailersFetch } from '../../../application/FetchActions/movieTrailersFetch';
 import Loading from '../../Components/Loading';
 
@@ -25,10 +23,10 @@ const MovieTrailers: React.FC<MovieProps> = ({ movieId }) => {
         const lowerCaseName = trailer.videoName.toLowerCase();
         return lowerCaseName.includes("trailer") || lowerCaseName.includes("official");
     });
-    
+
     return (
         <div>
-            {isLoading && <Loading/>}
+            {isLoading && <Loading />}
             {data && data.length > 0 ? (
                 <div>
                     <h2>Trailers</h2>

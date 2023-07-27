@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import Loading from '../../Components/Loading';
-import personFetch, { PersonDetails } from '../../../application/Services/personFetch';
 import "./PersonDetails.css";
 import { posterBaseUrl } from '../../../application/Services/tmdbApiServices';
 import { DETAILS } from '../routes';
+import { usePersonDetailsFetch } from '../../../application/FetchActions/personDetailsFetch';
 
 
 export interface popProps {
@@ -16,44 +16,41 @@ export interface popProps {
 
 const PersonPage: React.FC = () => {
     const { personId } = useParams<{ personId: string }>();
-    const [personDetails, setPersonDetails] = useState<PersonDetails | null>(null);
-    const [popMovies, setPopMovies] = useState<popProps | null>(null);
-    const { isLoading1, isLoading2 } = personFetch(setPersonDetails, personId, setPopMovies);
     const [isExpanded, setIsExpanded] = useState(false);
     const navigate = useNavigate();
 
-    console.log(personDetails)
+    const { data, isLoading, error } = usePersonDetailsFetch(personId);
+    const personData = data?.personDetails
+    const popMovies = data?.popMovies
 
-    if (!personDetails) { return <Loading />; }
-    if (isLoading1 | isLoading2) { return <Loading />; }/*çift fetch olduğu için iki tane loading var*/
+    if (isLoading) { return <Loading />; }
 
-    const handleGenreClick = (movieID: number) => {
-
+    const handleMovieClick = (movieID: number) => {
         navigate(`${DETAILS}${movieID}`);
     };
-    { console.log(popMovies) }
+
 
     return (
         <div className="containerPP">
-            <h1 className="titlePP">{personDetails.name}</h1>
-            <img className="imagePP" src={`${posterBaseUrl}${personDetails.profile_path}`} alt={personDetails.name}
-            onError={(e: React.SyntheticEvent<HTMLImageElement>) => {
-                e.currentTarget.src = 'src/assets/no-avatar.png';
-              }} />
-            <p className="infoPP"> <b>Known for:</b> {personDetails.known_for_department}</p>
-            {personDetails.birthday && <p className="infoPP" ><b>Birthday:</b> {personDetails.birthday}</p>}
-            <p className="infoPP" ><b>Gender :</b> {(personDetails.gender === 1) ? (<>Woman</>) : (<>Man</>)}</p>
-            {personDetails.place_of_birth && <p className="infoPP" ><b>Place of Birth: </b>{personDetails.place_of_birth}</p>}
-            {personDetails.homepage && <p className='infoPP'><a href={personDetails.homepage} target="_blank">Website: {personDetails.homepage}</a> </p>}
+            <h1 className="titlePP">{personData?.name}</h1>
+            <img className="imagePP" src={`${posterBaseUrl}${personData?.profilPath}`} alt={personData?.name}
+                onError={(e: React.SyntheticEvent<HTMLImageElement>) => {
+                    e.currentTarget.src = 'src/assets/no-avatar.png';
+                }} />
+            <p className="infoPP"> <b>Known for:</b> {personData?.knownForDepartment}</p>
+            {personData?.birthday && <p className="infoPP" ><b>Birthday:</b> {personData.birthday}</p>}
+            <p className="infoPP" ><b>Gender :</b> {(personData?.gender === 1) ? (<>Woman</>) : (<>Man</>)}</p>
+            {personData?.placeOfBirth && <p className="infoPP" ><b>Place of Birth: </b>{personData.placeOfBirth}</p>}
+            {personData?.website && <p className='infoPP'><a href={personData?.website} target="_blank">Website: {personData?.website}</a> </p>}
             <hr></hr>
             <h2>Popular Movies:</h2>
             {(popMovies == null || popMovies.length === 0) ? (
-                <><Loading /></>
+                <>{error}</>
             ) : (
                 popMovies.map((movie: any) => (
                     <div
                         key={movie.id}
-                        onClick={() => handleGenreClick(movie.id)} >
+                        onClick={() => handleMovieClick(movie.id)} >
                         <div className="moviePP" >{movie.title}</div>
                     </div>
                 ))
@@ -61,8 +58,9 @@ const PersonPage: React.FC = () => {
             <br></br>
             <hr></hr>
 
-            {personDetails.biography && <div className="bioPP">
-                <b>Biography:</b> {isExpanded ? personDetails.biography : `${personDetails.biography.slice(0, 200)}...`}<br></br>
+            {personData?.birthday && <div className="bioPP">
+                <b>Biography:</b> {isExpanded ? personData.biography : `${personData.biography.slice(0, 200)}...`}<br></br>
+                <br></br>
                 <button onClick={() => setIsExpanded(!isExpanded)}>
                     {isExpanded ? "Hide" : "Show more"}
                 </button></div>}
