@@ -7,7 +7,7 @@ import { CastMember } from "../../../application/Types/MovieCastDetailsTypes";
 import { Movie } from "../../../application/Types/MovieTypes";
 import { setGenreTitle } from '../../../store/actions';
 import { PERSON, SEARCHBYID } from "../routes";
-import { posterBaseUrl } from '../../../application/Services/tmdbApiServices';
+import { posterBaseUrl } from '../../../data-access/apiPaths';
 import MovieTrailers from './movieTrailer';
 import { useMovieDetailsFetch } from '../../../application/FetchActions/movieDetailsFetch';
 import { useMovieCastDetailsFetch } from '../../../application/FetchActions/movieCastDetailsFetch';

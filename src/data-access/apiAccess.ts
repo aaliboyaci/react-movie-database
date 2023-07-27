@@ -9,6 +9,7 @@ import { RandomMovieDTO } from './randomMovieDTO';
 import { PersonDetailsDTO } from './personDetailsDTO';
 import { PersonPopMoviesDTO } from './personPopMoviesDTO';
 import { SearchPersonDTO } from './searchPersonDTO';
+import { SearchMovieDTO } from './searchMovieDTO';
 
 const API_KEY = `${apiKey}`;
 
@@ -128,8 +129,22 @@ export async function getSearchPerson(page: number, query: string): Promise<Sear
     try {
         const personSearchUrl = `${baseUrl}search/person?api_key=${apiKey}&query=${query}&page=${page}`
         const response = await axiosInstance.get(personSearchUrl);
-        const movieTrailersResponse: SearchPersonDTO[] = response.data.results;
-        return movieTrailersResponse;
+        const personSearchResponse: SearchPersonDTO[] = response.data.results;
+        return personSearchResponse;
+    } catch (error) {
+        console.error('Error fetching movie trailers:', error);
+        throw error;
+    }
+}
+
+export async function getSearchMovies(page: number, query: string, genreID:string|null): Promise<SearchMovieDTO[]> {
+    try {
+        const searchUrl = `${baseUrl}search/movie?api_key=${apiKey}&query=${query}&page=${page}`;
+        const genreUrl = `${baseUrl}discover/movie?api_key=${apiKey}&with_genres=${genreID}&page=${page}`;
+        const fetchUrl: string = genreID ? genreUrl : searchUrl;
+        const response = await axiosInstance.get(fetchUrl);
+        const movieSearchResponse: SearchMovieDTO[] = response.data.results;
+        return movieSearchResponse;
     } catch (error) {
         console.error('Error fetching movie trailers:', error);
         throw error;

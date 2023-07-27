@@ -4,7 +4,7 @@ import './watchList.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { removeFavoriteMovie } from '../../../store/actions';
 import { Link } from 'react-router-dom';
-import { posterBaseUrl } from '../../../application/Services/tmdbApiServices';
+import { posterBaseUrl } from '../../../data-access/apiPaths';
 import { DETAILS } from '../routes';
 
 interface Movie {

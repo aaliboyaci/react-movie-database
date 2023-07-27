@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import Loading from '../../Components/Loading';
 import "./PersonDetails.css";
-import { posterBaseUrl } from '../../../application/Services/tmdbApiServices';
+import { posterBaseUrl } from '../../../data-access/apiPaths';
 import { DETAILS } from '../routes';
 import { usePersonDetailsFetch } from '../../../application/FetchActions/personDetailsFetch';
 

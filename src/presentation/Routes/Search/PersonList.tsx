@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { DETAILS, PERSON } from "../routes";
-import { posterBaseUrl } from '../../../application/Services/tmdbApiServices';
+import { PERSON } from "../routes";
+import { posterBaseUrl } from "../../../data-access/apiPaths";
 import "../../Routes/Search/SearchPage.css";
 import { SearchPersonType } from "../../../application/Types/SearchPersonTypes";
 

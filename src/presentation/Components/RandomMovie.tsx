@@ -1,12 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, {useState } from 'react';
 import '../Routes/HomePage.css';
 import "./randomMovie.css";
 import { Link } from 'react-router-dom';
 import diceImg from '../assets/dice.png';
-// import useRandomMovieFetch from '../../application/Services/randomMovieFetch';
-import { posterBaseUrl } from '../../application/Services/tmdbApiServices';
+import { posterBaseUrl } from '../../data-access/apiPaths';
 import { DETAILS } from '../Routes/routes';
-import Movie from '../../application/Services/Movie';
 import { useRandomMovieFetch } from '../../application/FetchActions/randomMovieFetch';
 import Loading from './Loading';
 
