@@ -15,3 +15,6 @@ export const posterBaseUrl: string = `https://image.tmdb.org/t/p/w500/`
 //random movie url
 export const randomMovieURL : string = `${baseUrl}discover/movie?api_key=${apiKey}&sort_by=popularity.desc&page=`;
 
+//personSearch
+export  const personSearchUrl: string = `${baseUrl}search/person`;
+
