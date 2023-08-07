@@ -52,7 +52,7 @@ const WatchList: React.FC = () => {
                     <div className="fav-des">{movie.overview.slice(0, 95)}...</div>
                   </Link>
                   <button className="empty-button" onClick={() => handleRemoveClick(movie.id)}>
-                    Remove From Favs
+                    Remove
                   </button>
                 </div>
               </div>

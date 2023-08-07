@@ -21,7 +21,7 @@ export async function fetchMovieSearch(page: number, query: string, searchSelect
 
             return {
                 id: movie.id,
-                name: movie.name,
+                name: movie.title,
                 poster: movie.poster_path,
                 popularity: movie.popularity,
                 releaseDate: movie.release_date,

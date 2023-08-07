@@ -28,8 +28,8 @@ const Header: React.FC<HeaderProps> = () => {
   return (
     <div>
       <h1>Movie Database App</h1>
-      <form onSubmit={handleSubmit}>
-        <input id="searchInput" type="text" value={searchTerm} onChange={handleInputChange} placeholder="Search for a movie" />
+      <form id="searchForm" onSubmit={handleSubmit}>
+        <input id="searchInput" type="text" value={searchTerm} onChange={handleInputChange} placeholder="Search for a movie or actor..." />
         <button className="searchbtn" type="submit"> Search
           <img src={searchImage} alt="search" className="searchimg" />
         </button>
