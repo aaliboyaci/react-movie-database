@@ -6,14 +6,8 @@ import { removeFavoriteMovie } from '../../../store/actions';
 import { Link } from 'react-router-dom';
 import { posterBaseUrl } from '../../../data-access/apiPaths';
 import { DETAILS } from '../routes';
+import { MovieDetails } from '../../../application/Types/MovieDetailsTypes';
 
-interface Movie {
-  id: number;
-  poster_path: string;
-  title: string;
-  release_date: string;
-  overview: string;
-}
 
 const WatchList: React.FC = () => {
   const favoriteMovies = useSelector((state: any) => state.favoriteMovies);
@@ -30,6 +24,8 @@ const WatchList: React.FC = () => {
     dispatch(removeFavoriteMovie(movieId));
   };
 
+  console.log(currentMovies)
+
   return (
     <>
       <h1>Your Watch List</h1>
@@ -38,15 +34,15 @@ const WatchList: React.FC = () => {
           <p>No movies in your watch list.</p>
         ) : (
           <>
-            {currentMovies.map((movie: Movie) => (
+            {currentMovies.map((movie: MovieDetails) => (
               <div key={movie.id} className="fav-movie">
                 <Link to={`${DETAILS}${movie.id}`} className="fav-link">
                   <div className="fav-top">
                     <div className="fav-image">
-                      <img src={`${posterBaseUrl}${movie.poster_path}`} alt={movie.title} />
+                      <img src={`${posterBaseUrl}${movie.posterPath}`} alt={movie.title} />
                     </div>
                     <div className="fav-year">
-                      <b>{movie.release_date.slice(0, 4)}</b>
+                      <b>{movie.releaseDate.slice(0, 4)}</b>
                     </div>
                   </div>
                 </Link>
