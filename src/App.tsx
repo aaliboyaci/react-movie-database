@@ -15,12 +15,13 @@ import PersonPage from './presentation/Routes/Details/PersonDetails';
 import { HOME, TRENDING, GENRESPAGE, WATCHLIST, DETAILSPAGE, PERSONPAGE, SEARCHPAGE, ERROR } from  "./presentation/Routes/routes"
 
 
+// <Router  basename={process.env.NODE_ENV === 'development' ? '/' : '/react-movie-database/'}> //
 function App() {
 
   return (
     <div id="container">
       <Provider store={store}>
-      <Router  basename={process.env.NODE_ENV === 'development' ? '/' : '/react-movie-database/'}>
+      <Router basename={process.env.PUBLIC_URL}>
           <Header />
           <Routes>
             <Route path={HOME} element={<HomePage />} />
