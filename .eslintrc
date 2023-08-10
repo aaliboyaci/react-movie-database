@@ -21,7 +21,7 @@
   },
   "rules": {
     "no-unused-vars": [
-      "error",
+      "error non used variables",
       {
         "vars": "all",
         "args": "after-used",
