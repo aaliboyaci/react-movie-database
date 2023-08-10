@@ -1,0 +1,115 @@
+.movie-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.movie-card {
+  display: flex;
+  flex-direction: row;
+  margin: 35px 0px 45px 0px;
+}
+
+.main-infos {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-left: 20px;
+}
+
+.block-1 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.overview {
+  width: 500px;
+}
+
+.moviePoster {
+  width: 190px;
+  height: auto;
+  margin-right: 20px;
+}
+
+.line {
+  width: 710px;
+}
+
+.notfavorited {
+  color: #04d134;
+  background-color: #08591b;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.notfavorited:hover {
+  background-color: #04d134;
+  color: #08591b;
+}
+
+.favorited {
+  background-color: rgb(125, 30, 30);
+  color: white;
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.favorited:hover {
+  background-color: red;
+}
+
+.infos-second {
+  display: flex;
+  flex-direction: row;
+  margin: 30px 0px 30px 0px;
+  text-align: center;
+}
+.director {
+  margin-right: 35px;
+}
+.cast {
+  margin-right: 35px;
+}
+
+.genres-box {
+  display: flex;
+  flex-direction: column;
+  margin-right: 35px;
+}
+.genres {
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  user-select: none;
+  justify-content: center;
+}
+
+.title-label {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.genre {
+  display: inline-block;
+  padding: 4px 8px;
+  margin-right: 3px;
+  margin-left: 3px;
+  margin-bottom: 6px;
+  background-color: #08591b;
+  border-radius: 3px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.genre:hover {
+  background-color: #04d134;
+  color: #08591b;
+}

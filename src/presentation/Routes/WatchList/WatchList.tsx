@@ -1,13 +1,12 @@
-import React from 'react';
-import { useState } from 'react';
-import './watchList.css';
-import { useSelector, useDispatch } from 'react-redux';
-import { removeFavoriteMovie } from '../../../store/actions';
-import { Link } from 'react-router-dom';
-import { posterBaseUrl } from '../../../data-access/apiPaths';
-import { DETAILS } from '../routes';
-import { MovieDetails } from '../../../application/Types/MovieDetailsTypes';
-
+import React from "react";
+import { useState } from "react";
+import "./watchList.css";
+import { useSelector, useDispatch } from "react-redux";
+import { removeFavoriteMovie } from "../../../store/actions";
+import { Link } from "react-router-dom";
+import { posterBaseUrl } from "../../../data-access/apiPaths";
+import { DETAILS } from "../routes";
+import { MovieDetails } from "../../../application/Types/MovieDetailsTypes";
 
 const WatchList: React.FC = () => {
   const favoriteMovies = useSelector((state: any) => state.favoriteMovies);
@@ -18,13 +17,16 @@ const WatchList: React.FC = () => {
   const totalPages = Math.ceil(favoriteMovies.length / moviesPerPage);
   const indexOfLastMovie = page * moviesPerPage;
   const indexOfFirstMovie = indexOfLastMovie - moviesPerPage;
-  const currentMovies = favoriteMovies.slice(indexOfFirstMovie, indexOfLastMovie);
+  const currentMovies = favoriteMovies.slice(
+    indexOfFirstMovie,
+    indexOfLastMovie,
+  );
 
   const handleRemoveClick = (movieId: number) => {
     dispatch(removeFavoriteMovie(movieId));
   };
 
-  console.log(currentMovies)
+  console.log(currentMovies);
 
   return (
     <>
@@ -39,7 +41,10 @@ const WatchList: React.FC = () => {
                 <Link to={`${DETAILS}${movie.id}`} className="fav-link">
                   <div className="fav-top">
                     <div className="fav-image">
-                      <img src={`${posterBaseUrl}${movie.posterPath}`} alt={movie.title} />
+                      <img
+                        src={`${posterBaseUrl}${movie.posterPath}`}
+                        alt={movie.title}
+                      />
                     </div>
                     <div className="fav-year">
                       <b>{movie.releaseDate.slice(0, 4)}</b>
@@ -49,9 +54,14 @@ const WatchList: React.FC = () => {
                 <div className="fav-bot">
                   <Link to={`${DETAILS}${movie.id}`} className="fav-link">
                     <div className="fav-title">{movie.title}</div>
-                    <div className="fav-des">{movie.overview.slice(0, 95)}...</div>
+                    <div className="fav-des">
+                      {movie.overview.slice(0, 95)}...
+                    </div>
                   </Link>
-                  <button className="empty-button" onClick={() => handleRemoveClick(movie.id)}>
+                  <button
+                    className="empty-button"
+                    onClick={() => handleRemoveClick(movie.id)}
+                  >
                     Remove
                   </button>
                 </div>
@@ -66,7 +76,10 @@ const WatchList: React.FC = () => {
           <button disabled={page === 1} onClick={() => setPage(page - 1)}>
             Previous
           </button>
-          <button disabled={page === totalPages} onClick={() => setPage(page + 1)}>
+          <button
+            disabled={page === totalPages}
+            onClick={() => setPage(page + 1)}
+          >
             Next
           </button>
         </div>

@@ -9,7 +9,6 @@ export interface PersonListProps {
   people: SearchPersonType[] | null;
 }
 
-
 const PersonList: React.FC<PersonListProps> = ({ people }) => {
   if (people?.length === 0) {
     return <div className="person-item">No persons found.</div>;
@@ -21,11 +20,15 @@ const PersonList: React.FC<PersonListProps> = ({ people }) => {
         <li key={person.personID} className="movie-item">
           <Link to={`${PERSON}${person.personID}`} className="movie-link">
             <img
-              src={person.profilePath ? `${posterBaseUrl}${person.profilePath}` : 'src/assets/no-avatar.png'}
+              src={
+                person.profilePath
+                  ? `${posterBaseUrl}${person.profilePath}`
+                  : "src/assets/no-avatar.png"
+              }
               alt={person.personName}
               className="movie-poster"
               onError={(e: React.SyntheticEvent<HTMLImageElement>) => {
-                e.currentTarget.src = 'src/presentation/assets/no-avatar.png';
+                e.currentTarget.src = "src/presentation/assets/no-avatar.png";
               }}
             />
             <div className="movie-info">

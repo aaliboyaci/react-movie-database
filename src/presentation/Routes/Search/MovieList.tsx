@@ -5,7 +5,6 @@ import { DETAILS } from "../routes";
 import { posterBaseUrl } from "../../../data-access/apiPaths";
 import { SearchMovieType } from "../../../application/Types/SearchMovieTypes";
 
-
 export interface MovieListProps {
   movies: SearchMovieType[] | null;
 }
@@ -13,7 +12,8 @@ export interface MovieListProps {
 const MovieList: React.FC<MovieListProps> = ({ movies }) => {
   if (movies?.length === 0) {
     return <div className="movie-item">No movies found.</div>;
-  }console.log(movies)
+  }
+  console.log(movies);
 
   return (
     <ul className="movie-list">
@@ -25,7 +25,7 @@ const MovieList: React.FC<MovieListProps> = ({ movies }) => {
               alt={movie?.name}
               className="movie-poster"
               onError={(e: React.SyntheticEvent<HTMLImageElement>) => {
-                e.currentTarget.src = 'src/presentation/assets/404-error.png';
+                e.currentTarget.src = "src/presentation/assets/404-error.png";
               }}
             />
             <div className="movie-info">

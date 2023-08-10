@@ -1,17 +1,27 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <title>404 Page Not Found</title>
-</head>
-<body>
-  <p>This page does not exist. If you arrived here by following a link, please ensure the link is correct.</p>
-  <a href="https://aaliboyaci.github.io/react-movie-database/" style="text-decoration: none;">Back to home</a>
-  <script>
-    const pathSegments = window.location.pathname.split('/');
-    if (pathSegments.length > 2 && pathSegments[1] === 'react-movie-database') {
-      window.location.replace(`/${pathSegments.slice(2).join('/')}`);
-    }
-  </script>
-</body>
+  <head>
+    <meta charset="utf-8" />
+    <title>404 Page Not Found</title>
+  </head>
+  <body>
+    <p>
+      This page does not exist. If you arrived here by following a link, please
+      ensure the link is correct.
+    </p>
+    <a
+      href="https://aaliboyaci.github.io/react-movie-database/"
+      style="text-decoration: none"
+      >Back to home</a
+    >
+    <script>
+      const pathSegments = window.location.pathname.split("/");
+      if (
+        pathSegments.length > 2 &&
+        pathSegments[1] === "react-movie-database"
+      ) {
+        window.location.replace(`/${pathSegments.slice(2).join("/")}`);
+      }
+    </script>
+  </body>
 </html>

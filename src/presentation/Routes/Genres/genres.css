@@ -1,22 +1,39 @@
-.genres-container{
-    display: grid;
+.genres-container {
+  display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 10px;
   cursor: pointer;
 }
 
-.genre-box{
+.genre-box {
   user-select: none;
-    border-radius: 8px;
-    border: none;
-    padding: 9px;
-    background-color: white;
-    color: #1c1c1c;
-    text-align: center;
+  border-radius: 8px;
+  border: none;
+  padding: 9px;
+  background-color: white;
+  color: #1c1c1c;
+  text-align: center;
 }
 
 .genres-container :hover {
-
   color: white;
   background-color: #04d134;
+}
+
+@media screen and (max-width: 820px) {
+  .genres-container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .genre-box {
+    font-size: smaller;
+    border-radius: 8px;
+    padding: 5px;
+  }
+}
+
+@media screen and (max-width: 460px) {
+  .genre-box {
+    font-size: 11px;
+  }
 }

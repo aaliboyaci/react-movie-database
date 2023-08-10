@@ -5,10 +5,6 @@ export interface MovieDTO {
   release_date: string;
   poster_path: string;
   popularity: number;
-  }
-  
-  // Data Transfer Object
-  
+}
 
- 
-  
+// Data Transfer Object

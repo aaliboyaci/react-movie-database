@@ -1,84 +1,81 @@
 .card {
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    text-align: center;
-    margin-bottom: 20px;
-    width: 100%;
-    border-bottom: 1px solid #04d134;
-  
-  }
-  
-  .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    margin-bottom: 10px;
-  }
-  
-  .header h2 {
-    font-size: 20px;
-    color: #04d134;
-  }
-  
-  button {
-    padding: 5px 10px;
-    background-color: #f1f1f1;
-    border: none;
-    cursor: pointer;
-  }
-  
-  
-  
-  .content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 10px;
-    width: 100%;
-  }
-  
-  img {
-    width: 150px;
-    height: auto;
-    object-fit: cover;
-    border-radius: 8px 8px 0 0;
-  }
-  
-  p {
-    font-size: 14px;
-    color: white;
-  }
-  
-  .random-title {
-    font-size: 14px;
-    margin: 0;
-  }
-  
-  .random-year {
-    margin: 5px 0;
-    color: #888;
-  }
-  
-  .dice{
-    width: 30px;
-    filter: invert(46%) sepia(92%) saturate(866%) hue-rotate(93deg) brightness(104%) contrast(97%);
-  }
-  
-  .random-btn {
-    border-radius: 4px;
-    background-color: #1c1c1c;
-    color: #04d134;
-    border: 1px solid #04d134;
-    margin-top: 15px;
-    padding: 10px;
-    font-size: 14px;
-  }
-  
-  .random-btn:hover {
-    background-color: #04d134;
-    color: #1c1c1c;
-  }
-  
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  text-align: center;
+  margin-bottom: 20px;
+  width: 100%;
+  border-bottom: 1px solid #04d134;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.header h2 {
+  font-size: 20px;
+  color: #04d134;
+}
+
+button {
+  padding: 5px 10px;
+  background-color: #f1f1f1;
+  border: none;
+  cursor: pointer;
+}
+
+.content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  width: 100%;
+}
+
+img {
+  width: 150px;
+  height: auto;
+  object-fit: cover;
+  border-radius: 8px 8px 0 0;
+}
+
+p {
+  font-size: 14px;
+  color: white;
+}
+
+.random-title {
+  font-size: 14px;
+  margin: 0;
+}
+
+.random-year {
+  margin: 5px 0;
+  color: #888;
+}
+
+.dice {
+  width: 30px;
+  filter: invert(46%) sepia(92%) saturate(866%) hue-rotate(93deg)
+    brightness(104%) contrast(97%);
+}
+
+.random-btn {
+  border-radius: 4px;
+  background-color: #1c1c1c;
+  color: #04d134;
+  border: 1px solid #04d134;
+  margin-top: 15px;
+  padding: 10px;
+  font-size: 14px;
+}
+
+.random-btn:hover {
+  background-color: #04d134;
+  color: #1c1c1c;
+}

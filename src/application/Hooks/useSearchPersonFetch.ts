@@ -1,6 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
-export function useSearchPersonFetch<T>(promiseCallback: () => Promise<T>, query:string, page:number, setSearchSelect: number) {
+export function useSearchPersonFetch<T>(
+  promiseCallback: () => Promise<T>,
+  query: string,
+  page: number,
+  setSearchSelect: number,
+) {
   const [data, setData] = useState<T | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -12,11 +17,10 @@ export function useSearchPersonFetch<T>(promiseCallback: () => Promise<T>, query
         setIsLoading(false);
       })
       .catch((error) => {
-        setError(error.message || 'An error occurred');
+        setError(error.message || "An error occurred");
         setIsLoading(false);
       });
-  }, [query,page,setSearchSelect]);
-
+  }, [query, page, setSearchSelect]);
 
   return { data, error, isLoading };
 }

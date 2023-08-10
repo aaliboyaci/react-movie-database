@@ -1,8 +1,8 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { posterBaseUrl } from '../../data-access/apiPaths';
-import { DETAILS } from '../Routes/routes';
-import { Movie } from '../../application/Types/MovieTypes';
+import React from "react";
+import { Link } from "react-router-dom";
+import { posterBaseUrl } from "../../data-access/apiPaths";
+import { DETAILS } from "../Routes/routes";
+import { Movie } from "../../application/Types/MovieTypes";
 
 interface MovieCardProps {
   movie: Movie;
@@ -16,7 +16,7 @@ const MovieCard: React.FC<MovieCardProps> = ({ movie }) => {
         alt={movie.title}
         className="movie-poster"
         onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
-          e.currentTarget.src = 'src/assets/404-error.png';
+          e.currentTarget.src = "src/assets/404-error.png";
         }}
       />
       <div className="movie-info">

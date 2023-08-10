@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
 export function useFetch<T>(promiseCallback: () => Promise<T>) {
   const [data, setData] = useState<T | null>(null);
@@ -12,7 +12,7 @@ export function useFetch<T>(promiseCallback: () => Promise<T>) {
         setIsLoading(false);
       })
       .catch((error) => {
-        setError(error.message || 'An error occurred');
+        setError(error.message || "An error occurred");
         setIsLoading(false);
       });
   }, []);

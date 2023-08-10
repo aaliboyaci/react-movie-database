@@ -1,11 +1,7 @@
 export interface MovieTrailers {
-    videoID: number;
-    key:number;
-    videoName: string;
-    
-    }
-    
-    // Data Transfer Object
-    
-  
-   
+  videoID: number;
+  key: number;
+  videoName: string;
+}
+
+// Data Transfer Object

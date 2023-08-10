@@ -9,6 +9,5 @@ export const PERSONPAGE: string = `${PERSON}:personId`;
 export const SEARCHPAGE: string = "/Search";
 export const ERROR: string = "/*";
 
-
-export const SEARCHBYID : string = `/search?genreid=`
-export const SEARCBYHQUERY: string = `/search?query=`
+export const SEARCHBYID: string = `/search?genreid=`;
+export const SEARCBYHQUERY: string = `/search?query=`;
