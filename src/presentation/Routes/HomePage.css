@@ -10,3 +10,43 @@ ul {
   align-items: center;
   width: auto;
 }
+
+.openingText {
+  width: 400px;
+  font-style: italic;
+  font-size: 13px;
+  text-align: center;
+  margin-top: 14px;
+}
+
+.wrapper {
+  display: grid;
+  place-items: center;
+}
+
+.typing-demo {
+  width: 400px;
+  animation: typing 2s steps(21), blink .5s step-end infinite alternate;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 3px solid;
+}
+
+@keyframes typing {
+  from {
+    width: 0
+  }
+}
+
+@keyframes blink {
+  50% {
+    border-color: transparent
+  }
+}
+
+@media (max-width: 500px) {
+  .openingText {
+    width: 300px;
+  }
+
+}
