@@ -36,8 +36,8 @@ const MovieTrailers: React.FC<MovieProps> = ({ movieId }) => {
             {videos?.map((trailer) => (
               <li key={trailer.videoID}>
                 <iframe
-                  style={{ border: "none" }}
-                  width="560"
+                  style={{ border: "none", width: "100%" }}
+                  max-width="600"
                   height="315"
                   src={`https://www.youtube.com/embed/${trailer.key}`}
                   title={trailer.videoName}

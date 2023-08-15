@@ -71,9 +71,11 @@
   margin: 30px 0px 30px 0px;
   text-align: center;
 }
+
 .director {
   margin-right: 35px;
 }
+
 .cast {
   margin-right: 35px;
 }
@@ -83,6 +85,7 @@
   flex-direction: column;
   margin-right: 35px;
 }
+
 .genres {
   margin-bottom: 10px;
   display: flex;
@@ -112,4 +115,76 @@
 .genre:hover {
   background-color: #04d134;
   color: #08591b;
+}
+
+/* Responsive Media Queries */
+@media screen and (max-width: 600px) {
+  .movie-card {
+    flex-direction: column;
+    align-items: center;
+    margin: 20px 0;
+  }
+
+  .line {
+    width: 300px;
+  }
+
+  .main-infos {
+    margin: 20px 0;
+  }
+
+  .block-1 {
+    flex-direction: column;
+  }
+
+  .overview {
+    max-width: 350px;
+    margin: 20px 10px;
+  }
+
+  .movie-text p {
+    margin: auto;
+  }
+
+  .moviePoster {
+    max-width: 100%;
+    margin: 0 auto 20px;
+  }
+
+  .line {
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  .infos-second {
+    flex-direction: column;
+    align-items: center;
+    margin: 20px 0;
+  }
+
+  .director,
+  .cast,
+  .genres-box {
+    margin: 10px 0;
+  }
+
+  .genres {
+    justify-content: center;
+  }
+
+  .title-label {
+    margin-bottom: 5px;
+  }
+
+  .genre {
+    margin: 3px;
+  }
+
+  .notfavorited,
+  .favorited {
+    width: auto;
+    text-align: center;
+    margin: 5px;
+    margin-bottom: 20px;
+  }
 }
