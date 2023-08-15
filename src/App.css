@@ -26,3 +26,9 @@ li {
   color: rgb(78, 176, 241);
   text-decoration: none;
 }
+
+.welcome {
+  color: #04d134;
+  margin-top: 200px;
+  text-align: center;
+}
