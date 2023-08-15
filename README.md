@@ -1,33 +1,31 @@
 # React Movie Database App
 
-Bu proje, The Movie Database (TMDB) API'sini kullanarak film verilerini görüntülemek ve yönetmek için geliştirilmiş bir web uygulamasını içermektedir.
+This project encompasses a web application developed to visualize and manage film data using The Movie Database (TMDB) API.
 
-## Açıklama
+## Description
 
-Bu projede kullanıcılar TMDB API'sini kullanarak 9 milyondan fazla film sonucunu arayabilir ve görüntüleyebilirler. Uygulama ayrıca her film ve oyuncu için ayrıntılı detay sayfaları sunar. Kullanıcılar favori filmlerini seçebilir ve rastgele film önerileri alabilirler.
+In this project, users can search for and view over 9 million film results using the TMDB API. The application also provides detailed pages for each film and actor. Users have the capability to mark their favorite films and receive random film recommendations.
 
-## Özellikler
+## Features
 
-- TMDB API'si kullanılarak gerçek zamanlı film verileri görüntülenebilir.
-- Film ve oyuncu ayrıntıları için detay sayfaları mevcuttur.
-- Favori filmler kaydedilebilir ve yönetilebilir.
-- Rastgele film önerileri sunan bir sayfa bulunmaktadır.
-- Teknolojiler: React, Vite, TypeScript, Redux, Axios kullanılmıştır.
-- Katmanlı mimari yapısı ile düzenlenmiştir.
+- Real-time film data visualization utilizing the TMDB API.
+- Detailed pages seperated to film and actor specifics.
+- The option to save and control favorite films.
+- A seperate page for random film recommendations.
+- Used technologies: React, Vite, TypeScript, Redux, Axios.
+- Architecturally organized using a layered approach.
 
-## Canlı Demo
+## Live Demo
 
-Projeyi canlı olarak [buradan](https://aaliboyaci.github.io/react-movie-database/) inceleyebilirsiniz.
+You can experience the live project [here](https://aaliboyaci.github.io/react-movie-database/).
 
-## Açıklama
+## Project Structure
 
-## Proje Yapısı
+- `presentation` directory: Houses UI componentry.
+- `application` directory: Encompasses business logic and processing functions.
+- `data-access` directory: Contains code for API requests and data access.
+- `store` directory: Includes Redux store, actions, and reducers.
 
-- `presentation` klasörü: UI katmanındaki bileşenlerin bulunduğu klasör.
-- `application` klasörü: İş mantığı ve işlem fonksiyonlarının bulunduğu klasör.
-- `data-access` klasörü: API istekleri ve veri erişimi için kullanılan kodların bulunduğu klasör.
-- `store` klasörü: Redux store, eylemler ve reducer'ların bulunduğu klasör.
+## License
 
-## Lisans
-
-Bu proje MIT lisansı altında lisanslanmıştır. Daha fazla bilgi için [LICENSE](LICENSE) dosyasını inceleyebilirsiniz.
+This project is licensed under the MIT license. Refer to the [LICENSE](LICENSE) file for more details.
