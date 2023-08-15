@@ -52,7 +52,7 @@ form {
   border-radius: 4px;
 }
 
-.searchbtn {
+.searchButton {
   font-family: "Montserrat", sans-serif;
   padding: 10px;
   border: none;
@@ -60,11 +60,15 @@ form {
   display: flex;
   justify-content: center;
   flex-wrap: nowrap;
+  background-color: white;
+  color: #1c1c1c;
+  font-size: 13px;
 }
 
-.searchbtn:hover {
+.searchButton:hover {
   background-color: #04d134;
   color: #1c1c1c;
+  cursor: pointer;
 }
 
 .searchimg {
@@ -78,6 +82,10 @@ form {
   align-items: center;
 }
 
+.mainHeader {
+  font-size: 30px;
+}
+
 @media screen and (max-width: 768px) {
   form {
     flex-direction: row;
@@ -88,14 +96,22 @@ form {
     margin-right: 5px;
     margin-bottom: 0px;
   }
-  .searchbtn {
-    width: 33%;
+
+  .mainHeader {
+    font-size: 26px;
   }
+
+  .searchButton {
+    width: 25%;
+    font-size: 12px;
+  }
+
   #menu-item a {
     font-size: 14px;
     padding: 5px 8px;
   }
 }
+
 @media screen and (max-width: 400px) {
   form {
     flex-direction: row;
@@ -106,9 +122,16 @@ form {
     margin-right: 5px;
     margin-bottom: 0px;
   }
-  .searchbtn {
-    width: 30%;
+
+  .mainHeader {
+    font-size: 18px;
   }
+
+  .searchButton {
+    width: 23%;
+    font-size: 12px;
+  }
+
   #menu-item a {
     font-size: 11px;
     padding: 5px 8px;
