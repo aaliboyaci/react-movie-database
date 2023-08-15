@@ -22,12 +22,10 @@
   color: #04d134;
 }
 
-/* button {
-  padding: 5px 10px;
-  background-color: #f1f1f1;
+button {
   border: none;
   cursor: pointer;
-} */
+}
 
 .content {
   display: flex;
@@ -63,22 +61,6 @@ p {
   width: 30px;
   filter: invert(46%) sepia(92%) saturate(866%) hue-rotate(93deg) brightness(104%) contrast(97%);
 }
-
-/* .random-btn {
-  border-radius: 4px;
-  background-color: #1c1c1c;
-  color: #04d134;
-  border: 1px solid #04d134;
-  margin-top: 15px;
-  padding: 10px;
-  font-size: 14px;
-}
-
-.random-btn:hover {
-  background-color: #04d134;
-  color: #1c1c1c;
-} */
-
 
 .random-btn {
   display: inline-block;

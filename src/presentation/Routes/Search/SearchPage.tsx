@@ -69,15 +69,32 @@ const SearchPage: React.FC = () => {
         {(searchSelect === 1 || searchSelect === 2 || genreId) &&
           (movieSearch && movieSearch.length > 0 ? (
             page > 1 ? (
-              <div style={{ display: "flex" }}>
-                <button onClick={() => setPage(page - 1)}>prev page</button>
-                <button onClick={() => setPage(page + 1)}>next page</button>
+              <div style={{ display: "flex" }} className="pagination">
+                <button
+                  className="paginationButton"
+                  onClick={() => setPage(page - 1)}
+                >
+                  prev page
+                </button>
+                <button
+                  className="paginationButton"
+                  onClick={() => setPage(page + 1)}
+                >
+                  next page
+                </button>
               </div>
             ) : (
-              <button onClick={() => setPage(page + 1)}>next page</button>
+              <button
+                className="paginationButton"
+                onClick={() => setPage(page + 1)}
+              >
+                next page
+              </button>
             )
           ) : (
-            <button onClick={() => setPage(1)}>go back</button>
+            <button className="paginationButton" onClick={() => setPage(1)}>
+              go back
+            </button>
           ))}
       </div>
     </>

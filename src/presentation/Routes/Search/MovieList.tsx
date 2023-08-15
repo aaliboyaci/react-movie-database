@@ -13,7 +13,6 @@ const MovieList: React.FC<MovieListProps> = ({ movies }) => {
   if (movies?.length === 0) {
     return <div className="movie-item">No movies found.</div>;
   }
-  console.log(movies);
 
   return (
     <ul className="movie-list">
