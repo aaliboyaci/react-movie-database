@@ -11,6 +11,11 @@
   margin: 35px 0px 45px 0px;
 }
 
+.movie-title-big {
+  font-size: 25px;
+  margin: 8px;
+}
+
 .main-infos {
   display: flex;
   flex-direction: column;
@@ -119,6 +124,11 @@
 
 /* Responsive Media Queries */
 @media screen and (max-width: 600px) {
+  .movie-title-big {
+    font-size: 16px;
+    margin: 8px;
+  }
+
   .movie-card {
     flex-direction: column;
     align-items: center;
@@ -138,11 +148,12 @@
   }
 
   .overview {
-    max-width: 350px;
-    margin: 20px 10px;
+    max-width: 340px;
+    margin: 20px 14px;
   }
 
-  .movie-text p {
+  .movie-text {
+    font-size: 12px;
     margin: auto;
   }
 

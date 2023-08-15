@@ -41,7 +41,7 @@ export const MovieDetailsPage: React.FC = () => {
     return <>{castError}</>;
   }
   const isMovieFavorite = favoriteMovies.some(
-    (favMovie: Movie) => favMovie.id === movie.id,
+    (favMovie: Movie) => favMovie.id === movie.id
   );
 
   const handleFavoriteClick = () => {
@@ -59,7 +59,7 @@ export const MovieDetailsPage: React.FC = () => {
 
   return (
     <div className="movie-details">
-      <h2 className="movie-title-big">{movie.title}</h2>
+      <div className="movie-title-big">{movie.title}</div>
       <div className="movie-card">
         <img
           className="moviePoster"
