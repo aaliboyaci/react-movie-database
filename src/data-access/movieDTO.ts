@@ -1,6 +1,6 @@
 export interface MovieDTO {
   id: number;
-  name: string;
+  name?: string;
   title: string;
   release_date: string;
   poster_path: string;
